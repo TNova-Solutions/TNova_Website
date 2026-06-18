@@ -431,7 +431,7 @@ const services = [
 const companyInfo = [
   ["Company", "TNova Solutions Pvt Ltd"],
   ["Type", "Private Limited"],
-  ["Founded", "2026"],
+  ["Founded", "2025"],
   ["Headquarters", "Tamil Nadu, India"],
   ["Industry", "IT & AI Applications"],
   ["Email", "contact@tnovasolutions.com"],
@@ -504,7 +504,7 @@ function Navbar() {
 function Hero() {
   return (
     <section style={styles.hero} id="home">
-      <div style={styles.heroTag}>Tamil Nadu, India · Est. 2026</div>
+      <div style={styles.heroTag}>Tamil Nadu, India · Est. 2025</div>
       <h1 style={styles.h1}>
         Build smarter with
         <br />
@@ -666,8 +666,8 @@ function CTA() {
           Tell us your idea — we'll turn it into a working product.
         </p>
         <div style={styles.ctaBtns}>
-          <a href="mailto:info@tnovasolutions.com" style={styles.btnWhite}>
-            info@tnovasolutions.com
+          <a href="mailto:contact@tnovasolutions.com" style={styles.btnWhite}>
+            contact@tnovasolutions.com
           </a>
           <a href="tel:+919944880268" style={styles.btnOutlineWhite}>
             +91 9944880268
@@ -688,7 +688,7 @@ function Footer() {
           <a href="http://www.tnovasolutions.com" style={styles.footerLink}>
             www.tnovasolutions.com
           </a>
-          <span>© 2026 TNova Solutions</span>
+          <span>© 2025 TNova Solutions</span>
         </div>
       </footer>
     </div>
