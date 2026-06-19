@@ -3,7 +3,7 @@ import logo from "./logo.png";
 
 const GRADIENT = "linear-gradient(135deg, #6B3FA0, #3B6DD4)";
 const PURPLE = "#6B3FA0";
-const BLUE = "#3B6DD4";
+const FOOTER_BG = "linear-gradient(135deg, rgba(107,63,160,0.95), rgba(59,109,212,0.95))";
 const DARK_BG = "linear-gradient(135deg, #3A1A6E, #1A3A7A)";
 
 const styles = {
@@ -12,18 +12,18 @@ const styles = {
     fontFamily: "'Inter', 'Segoe UI', sans-serif",
     margin: 0,
     padding: 0,
-    background: "#f8f7fc",
+    background: "transparent",
     color: "#1a1a2e",
   },
   // Nav
   nav: {
-    background: "#fff",
-    borderBottom: "1px solid #e8e0f0",
+    background: FOOTER_BG,
+    borderBottom: "1px solid rgba(255,255,255,0.12)",
     padding: "0",
     position: "sticky",
     top: 0,
     zIndex: 100,
-    boxShadow: "0 1px 12px rgba(107,63,160,0.07)",
+    boxShadow: "0 1px 12px rgba(0,0,0,0.18)",
   },
   navInner: {
     maxWidth: 1100,
@@ -48,10 +48,7 @@ const styles = {
     fontFamily: "'Space Grotesk', 'Inter', sans-serif",
     fontSize: "1.4rem",
     fontWeight: 700,
-    background: GRADIENT,
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
+    color: "#fff",
     letterSpacing: "-0.5px",
     cursor: "default",
   },
@@ -65,19 +62,19 @@ const styles = {
   navLink: {
     textDecoration: "none",
     fontSize: "0.9rem",
-    color: "#555",
+    color: "#eef2ff",
     fontWeight: 500,
     transition: "color 0.2s",
   },
   btnNav: {
-    background: GRADIENT,
+    background: "rgba(255,255,255,0.12)",
     color: "#fff",
     padding: "0.5rem 1.3rem",
     borderRadius: 8,
     fontSize: "0.875rem",
     fontWeight: 500,
     textDecoration: "none",
-    border: "none",
+    border: "1px solid rgba(255,255,255,0.18)",
     cursor: "pointer",
   },
   // Hero
@@ -382,32 +379,92 @@ const styles = {
   },
   // Footer
   footerWrap: {
-    borderTop: "1px solid #e8e0f0",
-    background: "#fff",
+    borderTop: "1px solid rgba(107, 63, 160, 0.18)",
+    background: FOOTER_BG,
   },
   footer: {
     maxWidth: 1100,
     margin: "0 auto",
-    padding: "1.5rem",
+    padding: "1.75rem 1.5rem",
     display: "flex",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-start",
     flexWrap: "wrap",
     gap: "1rem",
-    fontSize: "0.85rem",
-    color: "#888",
+    fontSize: "0.95rem",
+    color: "#eef2ff",
   },
   footerLogo: {
     fontFamily: "'Space Grotesk', 'Inter', sans-serif",
     fontWeight: 700,
-    fontSize: "1rem",
-    background: GRADIENT,
-    WebkitBackgroundClip: "text",
-    WebkitTextFillColor: "transparent",
-    backgroundClip: "text",
+    fontSize: "1.05rem",
+    color: "#fff",
   },
-  footerLinks: { display: "flex", gap: "2rem", flexWrap: "wrap" },
-  footerLink: { color: "#888", textDecoration: "none" },
+  footerLinks: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.65rem",
+    flex: "1 1 320px",
+  },
+  footerBottom: {
+    background: "#fff",
+    color: "#1a1a2e",
+    padding: "1rem 1.25rem",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: "1rem",
+    flexWrap: "nowrap",
+    width: "100%",
+  },
+  footerBottomCol: {
+    flex: "1 1 0",
+    minWidth: 0,
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.25rem",
+  },
+  footerBottomLogo: {
+    fontFamily: "'Space Grotesk', 'Inter', sans-serif",
+    fontWeight: 700,
+    fontSize: "1.05rem",
+    color: "#1a1a2e",
+  },
+  footerBottomLink: { color: "#1a1a2e", textDecoration: "none" },
+  footerColumn: {
+    flex: "1 1 0",
+    minWidth: 220,
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.75rem",
+  },
+  footerColumnTitle: {
+    fontWeight: 700,
+    color: "#eef2ff",
+    marginBottom: "0.5rem",
+  },
+  footerLink: { color: "#d8dcff", textDecoration: "none" },
+  footerContact: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "0.35rem",
+    color: "#eef2ff",
+  },
+  footerSocial: {
+    display: "flex",
+    gap: "1rem",
+    alignItems: "center",
+    marginTop: "0.75rem",
+    flexWrap: "wrap",
+  },
+  footerSocialLink: {
+    display: "inline-flex",
+    alignItems: "center",
+    gap: "0.5rem",
+    color: "#d8dcff",
+    textDecoration: "none",
+    fontWeight: 500,
+  },
 };
 
 // ── Data ──────────────────────────────────────────────────────────────
@@ -482,7 +539,7 @@ const techStack = [
 
 // ── Components ────────────────────────────────────────────────────────
 function Navbar() {
-  const [hovered, setHovered] = useState(null);
+  const [, setHovered] = useState(null);
   return (
     <nav style={styles.nav}>
       <div style={styles.navInner}>
@@ -497,7 +554,7 @@ function Navbar() {
                 href={`#${item.toLowerCase()}`}
                 style={{
                   ...styles.navLink,
-                  color: hovered === item ? PURPLE : "#555",
+                  color: "#fff",
                 }}
                 onMouseEnter={() => setHovered(item)}
                 onMouseLeave={() => setHovered(null)}
@@ -518,7 +575,7 @@ function Navbar() {
 function Hero() {
   return (
     <section style={styles.hero} id="home">
-      <div style={styles.heroTag}>Tamil Nadu, India · Est. 2026</div>
+
       <h1 style={styles.h1}>
         Build smarter with
         <br />
@@ -696,15 +753,57 @@ function Footer() {
   return (
     <div style={styles.footerWrap}>
       <footer style={styles.footer}>
-        <div style={styles.footerLogo}>TNova Solutions Pvt Ltd</div>
-        <div style={styles.footerLinks}>
-          <span>Tamil Nadu, India</span>
-          <a href="http://www.tnovasolutions.com" style={styles.footerLink}>
-            www.tnovasolutions.com
-          </a>
-          <span>© 2026 TNova Solutions</span>
+        <div style={styles.footerColumn}>
+          <div style={styles.footerLogo}>TNova Solutions Pvt Ltd</div>
+          <div style={{ marginTop: "0.6rem", color: "#d8dcff" }}>
+            AI-driven software services for mobile apps, cloud APIs, and machine learning.
+          </div>
+        </div>
+
+        <div style={styles.footerColumn}>
+          <div style={styles.footerColumnTitle}>Contact</div>
+          <div style={styles.footerContact}>
+            <a href="mailto:info@tnovasolutions.com" style={styles.footerLink}>
+              info@tnovasolutions.com
+            </a>
+            <a href="tel:+919944880268" style={styles.footerLink}>
+              +91 9944880268
+            </a>
+            <a href="http://www.tnovasolutions.com" style={styles.footerLink}>
+              www.tnovasolutions.com
+            </a>
+          </div>
+        </div>
+
+        <div style={styles.footerColumn}>
+          <div style={styles.footerColumnTitle}>Follow us</div>
+          <div style={styles.footerSocial}>
+            <a href="https://instagram.com/tnovasolutions" style={styles.footerSocialLink}>
+              📸 Instagram
+            </a>
+            <a href="https://facebook.com/tnovasolutions" style={styles.footerSocialLink}>
+              👍 Facebook
+            </a>
+            <a href="https://twitter.com/tnovasolutions" style={styles.footerSocialLink}>
+              🐦 Twitter
+            </a>
+          </div>
         </div>
       </footer>
+      <div style={styles.footerBottom}>
+        <div style={styles.footerBottomCol}>
+          <div style={styles.footerBottomLogo}>TNova Solutions Pvt Ltd</div>
+        </div>
+        <div style={styles.footerBottomCol}>
+
+          <a href="http://www.tnovasolutions.com" style={styles.footerBottomLink}>
+            www.tnovasolutions.com
+          </a>
+        </div>
+        <div style={styles.footerBottomCol}>
+          <span>© 2026 TNova Solutions</span>
+        </div>
+      </div>
     </div>
   );
 }
