@@ -1,4 +1,5 @@
 import { useState } from "react";
+import logo from "./logo.png";
 
 const GRADIENT = "linear-gradient(135deg, #6B3FA0, #3B6DD4)";
 const PURPLE = "#6B3FA0";
@@ -32,6 +33,16 @@ const styles = {
     alignItems: "center",
     justifyContent: "space-between",
     height: 64,
+  },
+  logoContainer: {
+    display: "flex",
+    alignItems: "center",
+    gap: "0.85rem"
+  },
+  logoImage: {
+    width: 36,
+    height: 36,
+    objectFit: "contain",
   },
   logoText: {
     fontFamily: "'Space Grotesk', 'Inter', sans-serif",
@@ -475,7 +486,10 @@ function Navbar() {
   return (
     <nav style={styles.nav}>
       <div style={styles.navInner}>
-        <div style={styles.logoText}>TNova Solutions</div>
+        <div style={styles.logoContainer}>
+          <img src={logo} alt="TNova Solutions logo" style={styles.logoImage} />
+          <div style={styles.logoText}>TNova Solutions</div>
+        </div>
         <ul style={styles.navLinks}>
           {["Services", "About", "Team", "Contact"].map((item) => (
             <li key={item}>
