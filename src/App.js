@@ -1,9 +1,9 @@
-import TNovaSolution from "./TNovaSolutions";
+import TNovaSolutions from "./TNovaSolutions";
 
 function App() {
   return (
     <div className="App">
-      <TNovaSolution />
+      <TNovaSolutions />
     </div>
   );
 }
