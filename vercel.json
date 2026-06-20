@@ -1,5 +1,0 @@
-cat > vercel.json << 'EOF'
-{
-  "outputDirectory": "dist"
-}
-EOF
