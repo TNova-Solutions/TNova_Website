@@ -15,7 +15,7 @@ A modern, single-page React website for TNova Solutions Pvt Ltd, built with Vite
 3. **Capabilities** — all 6 service lines (AI/ML, Mobile, Backend, Cloud, Web, Research)
 4. **Work** — featured projects (Fish Freshness App + internal platform)
 5. **Process** — 4-step engagement process
-6. **Team** — Thipakar Murugesan (Founder & CEO) and Naresh Krishna (Co-Founder & Director)
+6. **Team** — Thepakar Murugesan (Founder & CEO) and Naresh Krishna (Co-Founder & Director)
 7. **CTA band** — conversion prompt
 8. **Contact** — working contact form + direct contact details
 9. **Footer** — full sitemap + contact
