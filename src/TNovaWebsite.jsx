@@ -3,7 +3,7 @@ import "./style.css";
 import Nav from "./components/Nav";
 import ContactSection from "./components/ContactSection";
 import Footer from "./components/Footer";
-import HeroSection from "./components/HeroSection";
+import HeroSection from "./components/HeroSection/HeroSection";
 import Marquee from "./components/Marquee";
 import CapabilitiesSection from "./components/CapabilitiesSection";
 import WorkSection from "./components/WorkSection";

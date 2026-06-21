@@ -10,6 +10,8 @@
   --paper-dim: #E9E8F5;
   --ink: #13131F;
   --muted: #5C5C72;
+  --text-dim:#b8b2c9;
+  --word-delay:70ms;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: var(--paper);
   color: var(--ink);
