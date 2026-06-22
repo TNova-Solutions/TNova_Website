@@ -1,17 +1,16 @@
-import React from "react";
-import Reveal from "./Reveal";
-import { PROCESS_STEPS } from "../data";
+import Reveal from "../ui/Reveal";
+import { PROCESS_STEPS } from "../../constants/content";
 
-export default function ProcessSection() {
+export default function Process() {
   return (
     <section className="section" id="process">
       <div className="section-inner">
         <Reveal>
-          <div className="section-tag">How we work</div>
+          <p className="section-tag">How we work</p>
           <h2 className="section-title">A process built around milestones you can see.</h2>
           <p className="section-desc">
-            Every engagement follows the same four stages — scoped, priced,
-            and signed off before the next one starts.
+            Every engagement follows the same four stages — scoped, priced, and signed
+            off before the next one starts.
           </p>
         </Reveal>
 
