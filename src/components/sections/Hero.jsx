@@ -11,20 +11,18 @@ export default function Hero() {
 
       <div className="hero-cols">
         <div>
-          <p className="hero-eyebrow">Tamil Nadu, India · Building since 2026</p>
-
-          <h1 className="hero-title">
+          <h1 className="hero-title animate-item delay-1">
             We build software <br />
             that <span className="accent">ships.</span>
           </h1>
 
-          <p className="hero-sub">
+          <p className="hero-sub animate-item delay-3">
             TNova Solutions designs and builds mobile apps, backend systems, and machine
             learning products for teams who need a technical partner that owns delivery
             end-to-end — not just code.
           </p>
 
-          <div className="hero-actions">
+          <div className="hero-actions animate-item delay-4">
             <a href="#contact" className="btn-primary">
               Get a quote →
             </a>
