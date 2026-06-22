@@ -1,0 +1,65 @@
+import { useState } from "react";
+import RibbonMark from "../ui/RibbonMark";
+import { useScrolled } from "../../hooks/useScrolled";
+import { NAV_LINKS } from "../../constants/content";
+
+
+export default function Nav() {
+  const [navOpen, setNavOpen] = useState(false);
+  const scrolled = useScrolled(24);
+
+  return (
+    <>
+      <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
+        <div
+          className="nav-brand"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => e.key === "Enter" && window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <RibbonMark size={34} />
+          <span className="nav-brand-name">TNova Solutions</span>
+        </div>
+
+        <div className="nav-links">
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} className="nav-link">
+              {l.label}
+            </a>
+          ))}
+          <a href="#contact" className="nav-cta">
+            Start a project
+          </a>
+        </div>
+
+        <button
+          className="nav-burger"
+          onClick={() => setNavOpen(true)}
+          aria-label="Open menu"
+          aria-expanded={navOpen}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </nav>
+
+      {navOpen && (
+        <div className="mobile-menu" role="dialog" aria-modal="true">
+          <button className="mobile-close" onClick={() => setNavOpen(false)} aria-label="Close menu">
+            ×
+          </button>
+          {NAV_LINKS.map((l) => (
+            <a key={l.href} href={l.href} onClick={() => setNavOpen(false)}>
+              {l.label}
+            </a>
+          ))}
+          <a href="#contact" className="nav-cta" onClick={() => setNavOpen(false)}>
+            Start a project
+          </a>
+        </div>
+      )}
+    </>
+  );
+}
