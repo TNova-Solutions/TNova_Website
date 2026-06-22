@@ -18,17 +18,24 @@ export default function Capabilities() {
           {CAPABILITIES.map((cap, i) => (
             <Reveal key={cap.title} delay={i * 60}>
               <div className="cap-card">
-                <div className="cap-icon" aria-hidden="true">
-                  <span className="cap-icon-glyph">{cap.icon}</span>
+                <div className="cap-image">
+                  <img
+                    width="100%"
+                    height="200px"
+                    src={cap.image}
+                    alt={cap.title}
+                  />
                 </div>
-                <h3 className="cap-title">{cap.title}</h3>
-                <p className="cap-desc">{cap.desc}</p>
-                <div className="cap-tags">
-                  {cap.tags.map((tag) => (
-                    <span className="cap-tag" key={tag}>
-                      {tag}
-                    </span>
-                  ))}
+                <div className="cap-content">
+                  <h3 className="cap-title">{cap.title}</h3>
+                  <p className="cap-desc">{cap.desc}</p>
+                  <div className="cap-tags">
+                    {cap.tags.map((tag) => (
+                      <span className="cap-tag" key={tag}>
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
             </Reveal>
