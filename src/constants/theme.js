@@ -28,7 +28,7 @@ export const CONTACT = {
 export const FOUNDERS = [
   {
     initials: "TM",
-    name: "Thipakar Murugesan",
+    name: "Thepakar Murugesan",
     role: "Founder & Chief Executive Officer",
     bio: "Leads client strategy, project scoping, and delivery across every TNova engagement — the first and last point of contact for every client.",
   },
