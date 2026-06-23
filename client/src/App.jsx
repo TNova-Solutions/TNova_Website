@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import "./styles/global.css";
 import Nav from "./components/sections/Nav";
 import Hero from "./components/sections/Hero";
@@ -20,6 +21,13 @@ import Footer from "./components/sections/Footer";
  * without touching component logic.
  */
 export default function App() {
+  useEffect(() => {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    fetch(`${baseUrl}/api/message`)
+      .then(response => response.json())
+      .then(data => console.log(data.message))
+      .catch(error => console.error('Error fetching message:', error));
+  }, []);
   return (
     <div className="tnova-root">
       <Nav />
