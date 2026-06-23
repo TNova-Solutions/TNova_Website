@@ -20,7 +20,7 @@ export default function Contact() {
           <p className="section-tag">Contact</p>
           <h2 className="section-title">Let's talk about what you're building.</h2>
           <p className="section-desc">
-            Send a brief or just say hello — Thipakar and Naresh personally review every
+            Send a brief or just say hello — Thepakar and Naresh personally review every
             inquiry.
           </p>
         </Reveal>

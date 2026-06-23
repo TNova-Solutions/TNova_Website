@@ -34,9 +34,9 @@ export default function Nav() {
         </div>
 
         <button
-          className="nav-burger"
-          onClick={() => setNavOpen(true)}
-          aria-label="Open menu"
+          className={`nav-burger ${navOpen ? "open" : ""}`}
+          onClick={() => setNavOpen(!navOpen)}
+          aria-label={navOpen ? "Close menu" : "Open menu"}
           aria-expanded={navOpen}
         >
           <span />
@@ -47,9 +47,6 @@ export default function Nav() {
 
       {navOpen && (
         <div className="mobile-menu" role="dialog" aria-modal="true">
-          <button className="mobile-close" onClick={() => setNavOpen(false)} aria-label="Close menu">
-            ×
-          </button>
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} onClick={() => setNavOpen(false)}>
               {l.label}

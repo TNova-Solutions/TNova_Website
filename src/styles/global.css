@@ -169,21 +169,51 @@ body {
   transform: translateY(-1px);
 }
 
+/* Base styles for the hamburger container */
 .nav-burger {
-  display: none;
+  display: flex;
   flex-direction: column;
-  gap: 5px;
-  cursor: pointer;
-  background: none;
+  justify-content: space-between;
+  width: 24px;
+  height: 18px;
+  /* Height controls the gap between lines */
+  background: transparent;
   border: none;
-  padding: 6px;
+  cursor: pointer;
+  padding: 0;
+  z-index: 9999;
+  /* Ensures the button stays clickable above the open menu */
 }
 
+/* Base styles for the 3 lines */
 .nav-burger span {
-  width: 22px;
+  width: 100%;
   height: 2px;
-  background: white;
+  /* Thickness of the lines */
+  background-color: #ffffff;
   border-radius: 2px;
+  transition: all 0.3s ease-in-out;
+  transform-origin: left center;
+  /* Pivots from the left edge */
+}
+
+/* --- The 'X' Animation State --- */
+
+/* Top line rotates down */
+.nav-burger.open span:nth-child(1) {
+  transform: rotate(45deg);
+}
+
+/* Middle line disappears */
+.nav-burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+  /* Optional: slides it out slightly while fading */
+}
+
+/* Bottom line rotates up */
+.nav-burger.open span:nth-child(3) {
+  transform: rotate(-45deg);
 }
 
 .mobile-menu {
@@ -750,7 +780,7 @@ body {
 }
 
 .cap-card {
-  height: 28rem;
+  height: 30rem;
   background: white;
   padding: 24px 24px;
   transition: background 0.25s ease;
@@ -1342,7 +1372,7 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 18px;
+  padding-bottom: 18px;
   font-family: 'JetBrains Mono', monospace;
 }
 
