@@ -2,8 +2,16 @@ import CircuitBackground from "../ui/CircuitBackground";
 import Terminal from "../ui/Terminal";
 import AnimatedCounter from "../ui/AnimatedCounter";
 import { HERO_STATS } from "../../constants/content";
+import { useEffect } from "react";
 
 export default function Hero() {
+  useEffect(() => {
+    const baseUrl = import.meta.env.VITE_API_BASE_URL;
+    fetch(`${baseUrl}/api/hero`)
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .catch(error => console.error('Error fetching message:', error));
+  }, []);
   return (
     <header className="hero" id="top">
       <CircuitBackground />
