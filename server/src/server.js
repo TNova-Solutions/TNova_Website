@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 
 // 1. Import both objects from your data.js file
-const { Hero, capabilities } = require('./data.js'); 
+const { Hero, Capabilities } = require('./data.js');
 
 const app = express();
 app.use(cors());
@@ -14,7 +14,7 @@ app.use(express.json());
 // ==========================================
 app.get('/api/hero', (req, res) => {
     // Sends only the Hero object
-    res.json(Hero); 
+    res.json(Hero);
 });
 
 // ==========================================
@@ -22,11 +22,14 @@ app.get('/api/hero', (req, res) => {
 // ==========================================
 app.get('/api/capabilities', (req, res) => {
     // Sends only the capabilities object
-    res.json(capabilities); 
+    res.json(Capabilities);
 });
 
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
-});
+// Only listen locally. In production, Vercel handles this.
+if (process.env.NODE_ENV !== 'production') {
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
+}
+
+// CRITICAL: Export the app
+module.exports = app;

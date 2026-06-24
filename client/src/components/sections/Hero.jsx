@@ -3,15 +3,23 @@ import Terminal from "../ui/Terminal";
 import AnimatedCounter from "../ui/AnimatedCounter";
 import { HERO_STATS } from "../../constants/content";
 import { useEffect } from "react";
+import { API_BASE_URL } from '../../config.js'
 
 export default function Hero() {
+  const fetchHeroData = async () => {
+    try {
+      // This will automatically use the correct URL for local vs production
+      const response = await fetch(`${API_BASE_URL}/api/hero`);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching hero data:", error);
+    }
+  };
   useEffect(() => {
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
-    fetch(`${baseUrl}/api/hero`)
-      .then(response => response.json())
-      .then(data => console.log(data))
-      .catch(error => console.error('Error fetching message:', error));
+    fetchHeroData()
   }, []);
+
   return (
     <header className="hero" id="top">
       <CircuitBackground />
