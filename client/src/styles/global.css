@@ -963,12 +963,14 @@ body {
   font-size: 14.5px;
   line-height: 1.65;
   margin-bottom: 22px;
+  padding: 2% 0%;
 }
 
 .work-stack {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  padding: 2% 0%;
 }
 
 .work-stack-pill {

@@ -25,9 +25,9 @@ const Hero = {
 };
 
 const Capabilities = {
-    title: "What we do",
-    head: "Five service lines, one team that ships the whole stack.",
-    subHead: `We don't hand off between specialists — the same team that trains your model builds the app it runs on, and the API that connects them.`,
+    tag: "What we do",
+    title: "Five service lines, one team that ships the whole stack.",
+    desc: `We don't hand off between specialists — the same team that trains your model builds the app it runs on, and the API that connects them.`,
     services: [
         {
             icon: "◧",
@@ -74,5 +74,60 @@ const Capabilities = {
     ]
 };
 
+const Work = {
+    tag: "Selected work",
+    title: "Real builds, real constraints.",
+    desc: `A look at what we're currently building — from AI-powered field tools to
+            client product launches.`,
+    workItems: [
+        {
+            title: "Fish Freshness Indicator App",
+            status: "In progress",
+            statusType: "progress",
+            desc: "An AI-powered mobile app that assesses fish freshness from eye and gill photographs — built for a fisheries research conference, from dataset collection through to a working Android prototype.",
+            stack: ["TensorFlow Lite", "React Native", "FastAPI", "PostgreSQL"],
+        },
+        {
+            title: "Internal Delivery Platform",
+            status: "Live",
+            statusType: "live",
+            desc: "TNova's own client dashboard for project tracking, milestone sign-off, and document delivery — used to run every engagement we take on.",
+            stack: ["Next.js", "Supabase", "Tailwind"],
+        },
+    ]
+
+}
+
+const Process = {
+    tag: "How we work",
+    title: "A process built around milestones you can see",
+    desc: `Every engagement follows the same four stages — scoped, priced, and signed
+            off before the next one starts.`,
+    processSteps: [
+
+        {
+            n: "01",
+            title: "Scope & Quote",
+            desc: "We turn your brief into a fixed-scope quotation with module-by-module pricing — so you know exactly what you're paying for before work starts.",
+        },
+        {
+            n: "02",
+            title: "Build in Milestones",
+            desc: "Work is delivered in 3–4 milestones, each tied to a working deliverable: a trained model, a live API, a testable app build.",
+        },
+        {
+            n: "03",
+            title: "Test in the Real World",
+            desc: "Before final delivery, we validate against real conditions — field tests, user testing, or load testing, depending on the product.",
+        },
+        {
+            n: "04",
+            title: "Hand Off & Support",
+            desc: "You get full source code, documentation, and 30 days of post-launch support — no vendor lock-in, no black boxes.",
+        },
+
+    ]
+
+}
 // Export both at once
-module.exports = { Hero, Capabilities };
+module.exports = { Hero, Capabilities, Work, Process };

@@ -4,7 +4,7 @@ import { API_BASE_URL } from '../../config.js'
 import { setCapabilitiesData } from "../../redux/slice/Capabilities.js";
 
 export default function Capabilities({ globalState, dispatch }) {
-  const { title, head, subHead, services } = globalState?.capabilities || {}
+  const { tag, title, desc, services } = globalState?.capabilities || {}
 
   useEffect(() => {
     const fetchCapabilitiesData = async () => {
@@ -23,9 +23,9 @@ export default function Capabilities({ globalState, dispatch }) {
     <section className="section" id="capabilities">
       <div className="section-inner">
         <Reveal>
-          <p className="section-tag">{title}</p>
-          <h2 className="section-title">{head}</h2>
-          <p className="section-desc">{subHead}</p>
+          <p className="section-tag">{tag}</p>
+          <h2 className="section-title">{title}</h2>
+          <p className="section-desc">{desc}</p>
         </Reveal>
 
         <div className="cap-grid">

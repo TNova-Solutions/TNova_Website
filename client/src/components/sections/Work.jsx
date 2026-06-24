@@ -1,8 +1,24 @@
 import Reveal from "../ui/Reveal";
 import RibbonMark from "../ui/RibbonMark";
 import { WORK_ITEMS } from "../../constants/content";
+import { setWorkData } from "../../redux/slice/WorkSlice";
+import { useEffect } from "react";
+import { API_BASE_URL } from "../../config";
 
-export default function Work() {
+export default function Work({ globalState, dispatch }) {
+  useEffect(() => {
+    const fetchWorkData = async () => {
+      try {
+        // This will automatically use the correct URL for local vs production
+        const response = await fetch(`${API_BASE_URL}/api/work`);
+        const data = await response.json();
+        dispatch(setWorkData(data));
+      } catch (error) {
+        console.error("Error fetching hero data:", error);
+      }
+    };
+    fetchWorkData()
+  }, []);
   return (
     <section className="section work-section" id="work">
       <div className="section-inner">
