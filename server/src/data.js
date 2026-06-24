@@ -4,8 +4,8 @@ const Hero = {
             title: "We build software that",
             accent: "ships."
         },
-        sub: {
-            content: `TNova Solutions designs and builds mobile apps, backend systems, and machine learning products for teams who need a technical partner that owns delivery end-to-end — not just code.`
+        subHead: {
+            desc: `TNova Solutions designs and builds mobile apps, backend systems, and machine learning products for teams who need a technical partner that owns delivery end-to-end — not just code.`
         }
     }],
     stats: [
@@ -27,7 +27,7 @@ const Hero = {
 const Capabilities = {
     title: "What we do",
     head: "Five service lines, one team that ships the whole stack.",
-    subHead: `  We don't hand off between specialists — the same team that trains your model builds the app it runs on, and the API that connects them.`,
+    subHead: `We don't hand off between specialists — the same team that trains your model builds the app it runs on, and the API that connects them.`,
     services: [
         {
             icon: "◧",
@@ -73,8 +73,6 @@ const Capabilities = {
         },
     ]
 };
-
-
 
 // Export both at once
 module.exports = { Hero, Capabilities };
