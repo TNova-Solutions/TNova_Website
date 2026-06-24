@@ -1,7 +1,22 @@
 import Reveal from "../ui/Reveal";
 import { CAPABILITIES } from "../../constants/content";
+import { useEffect } from "react";
+import { API_BASE_URL } from '../../config.js'
 
 export default function Capabilities() {
+const fetchCapabilitiesData = async () => {
+    try {
+      // This will automatically use the correct URL for local vs production
+      const response = await fetch(`${API_BASE_URL}/api/capabilities`);
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching hero data:", error);
+    }
+  };
+  useEffect(() => {
+    fetchCapabilitiesData()
+  }, []);
   return (
     <section className="section" id="capabilities">
       <div className="section-inner">
