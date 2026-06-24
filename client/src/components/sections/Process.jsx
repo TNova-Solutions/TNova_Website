@@ -1,7 +1,23 @@
 import Reveal from "../ui/Reveal";
 import { PROCESS_STEPS } from "../../constants/content";
+import { useEffect } from "react";
+import { API_BASE_URL } from "../../config";
+import { setProcessData } from "../../redux/slice/ProcessSlice";
 
-export default function Process() {
+export default function Process({ globalState, dispatch }) {
+  useEffect(() => {
+    const fetchProcessData = async () => {
+      try {
+        // This will automatically use the correct URL for local vs production
+        const response = await fetch(`${API_BASE_URL}/api/process`);
+        const data = await response.json();
+        dispatch(setProcessData(data));
+      } catch (error) {
+        console.error("Error fetching hero data:", error);
+      }
+    };
+    fetchProcessData()
+  }, []);
   return (
     <section className="section" id="process">
       <div className="section-inner">
