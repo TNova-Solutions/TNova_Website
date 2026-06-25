@@ -1,10 +1,10 @@
-import CircuitBackground from "../ui/CircuitBackground";
-import Terminal from "../ui/Terminal";
-import AnimatedCounter from "../ui/AnimatedCounter";
+import CircuitBackground from "../../ui/CircuitBackground";
+import Terminal from "../../ui/Terminal";
+import AnimatedCounter from "../../ui/AnimatedCounter";
 import { useEffect } from "react";
-import { API_BASE_URL } from '../../config.js';
-
-import { setHeroData } from "../../redux/slice/HeroSlice.js";
+import { API_BASE_URL } from '../../../config.js';
+import { setHeroData } from "../../../redux/slice/HeroSlice.js";
+import axios from 'axios';
 
 export default function Hero({ globalState, dispatch }) {
   const { content, stats } = globalState?.hero || {}
@@ -13,16 +13,15 @@ export default function Hero({ globalState, dispatch }) {
     const fetchHeroData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await fetch(`${API_BASE_URL}/api/hero`);
-        const data = await response.json();
-        dispatch(setHeroData(data));
+        const response = await axios.get(`${API_BASE_URL}/api/hero`);
+        dispatch(setHeroData(response?.data));
       } catch (error) {
         console.error("Error fetching hero data:", error);
       }
     };
-    fetchHeroData()
-  }, []);
 
+    fetchHeroData();
+  }, []);
   return (
     <header className="hero" id="top">
       <CircuitBackground />

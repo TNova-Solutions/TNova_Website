@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
 import "./styles/global.css";
-import Nav from "./components/sections/Nav";
-import Hero from "./components/sections/Hero";
-import Marquee from "./components/sections/Marquee";
-import Capabilities from "./components/sections/Capabilities";
-import Work from "./components/sections/Work";
-import Process from "./components/sections/Process";
-import Team from "./components/sections/Team";
-import CtaBand from "./components/sections/CtaBand";
-import Contact from "./components/sections/Contact";
-import Footer from "./components/sections/Footer";
+import Nav from "./components/sections/nav/Nav";
+import Hero from "./components/sections/hero/Hero";
+import Marquee from "./components/sections/marquee/Marquee";
+import Capabilities from "./components/sections/capabilities/Capabilities";
+import Work from "./components/sections/work/Work";
+import Process from "./components/sections/process/Process";
+import Team from "./components/sections/team/Team";
+import CtaBand from "./components/sections/ctaBand/CtaBand";
+import Contact from "./components/sections/contact/Contact";
+import Footer from "./components/sections/footer/Footer";
 import { useSelector, useDispatch } from 'react-redux';
 
 /**

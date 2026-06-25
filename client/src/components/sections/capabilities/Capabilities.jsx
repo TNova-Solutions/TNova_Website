@@ -1,7 +1,8 @@
-import Reveal from "../ui/Reveal";
+import Reveal from "../../ui/Reveal.jsx";
 import { useEffect } from "react";
-import { API_BASE_URL } from '../../config.js'
-import { setCapabilitiesData } from "../../redux/slice/Capabilities.js";
+import { API_BASE_URL } from '../../../config.js'
+import { setCapabilitiesData } from "../../../redux/slice/CapabilitiesSlice.js";
+import axios from "axios";
 
 export default function Capabilities({ globalState, dispatch }) {
   const { tag, title, desc, services } = globalState?.capabilities || {}
@@ -10,14 +11,13 @@ export default function Capabilities({ globalState, dispatch }) {
     const fetchCapabilitiesData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await fetch(`${API_BASE_URL}/api/capabilities`);
-        const data = await response.json();
-        dispatch(setCapabilitiesData(data))
+        const response = await axios.get(`${API_BASE_URL}/api/capabilities`);
+        dispatch(setCapabilitiesData(response.data));
       } catch (error) {
-        console.error("Error fetching hero data:", error);
+        console.error("Error fetching capabilities data:", error);
       }
     };
-    fetchCapabilitiesData()
+    fetchCapabilitiesData();
   }, []);
   return (
     <section className="section" id="capabilities">

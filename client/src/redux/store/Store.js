@@ -1,7 +1,7 @@
 // src/app/store.js
 import { configureStore } from '@reduxjs/toolkit';
 import heroSlice from '../slice/HeroSlice';
-import capabilitiesSlice from '../slice/Capabilities';
+import capabilitiesSlice from '../slice/CapabilitiesSlice';
 import workSlice from '../slice/WorkSlice';
 import processSlice from '../slice/ProcessSlice';
 

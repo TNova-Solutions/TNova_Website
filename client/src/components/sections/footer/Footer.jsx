@@ -1,8 +1,24 @@
-import RibbonMark from "../ui/RibbonMark";
-import { CONTACT } from "../../constants/theme";
+import RibbonMark from "../../ui/RibbonMark";
+import { CONTACT } from "../../../constants/theme";
+import { useEffect } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "../../../config";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+
+ useEffect(() => {
+    const fetchFooterData = async () => {
+      try {
+        // This will automatically use the correct URL for local vs production
+        const response = await axios.get(`${API_BASE_URL}/api/footer`);
+        console.log(response)
+      } catch (error) {
+        console.error("Error fetching footer data:", error);
+      }
+    };
+    fetchFooterData();
+  }, []);
 
   return (
     <footer className="footer">
