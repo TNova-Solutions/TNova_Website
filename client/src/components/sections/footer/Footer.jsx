@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { CONTACT } from "../../../constants/theme";
 import { setFooterData } from "../../../redux/slice/FooterSlice";
 import RibbonMark from "../../ui/RibbonMark";
 import "./Footer.css";
 
-export default function Footer({ _globalState, dispatch }) {
+export default function Footer({ globalState, dispatch }) {
   const year = new Date().getFullYear();
+  const { contact } = globalState?.contact || {}
 
   useEffect(() => {
     const fetchFooterData = async () => {
@@ -53,15 +53,15 @@ export default function Footer({ _globalState, dispatch }) {
 
         <div>
           <p className="footer-col-title">Get in touch</p>
-          <a className="footer-link" href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-          <a className="footer-link" href={`tel:${CONTACT.phoneHref}`}>{CONTACT.phone}</a>
-          <span className="footer-link footer-link-static">{CONTACT.location}</span>
+          <a className="footer-link" href={`mailto:${contact?.email}`}>{contact?.email}</a>
+          <a className="footer-link" href={`tel:${contact?.phoneHref}`}>{contact?.phone}</a>
+          <span className="footer-link footer-link-static">{contact?.location}</span>
         </div>
       </div>
 
       <div className="footer-bottom">
         <span className="footer-bottom-text">© {year} TNova Solutions Pvt Ltd. All rights reserved.</span>
-        <span className="footer-bottom-text">{CONTACT.website}</span>
+        <span className="footer-bottom-text">{contact?.website}</span>
       </div>
     </footer>
   );

@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { CONTACT } from "../../../constants/theme";
 import { setContactData } from "../../../redux/slice/ContactSlice";
 import Reveal from "../../ui/Reveal";
 import "./Contact.css";
 
-export default function Contact({ dispatch }) {
+export default function Contact({ globalState, dispatch }) {
+  const { tag, title, desc, contact } = globalState?.contact || {}
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -36,20 +36,19 @@ export default function Contact({ dispatch }) {
     <section className="section contact-section" id="contact">
       <div className="section-inner">
         <Reveal>
-          <p className="section-tag">Contact</p>
-          <h2 className="section-title">Let&apos;s talk about what you&apos;re building.</h2>
+          <p className="section-tag">{tag}</p>
+          <h2 className="section-title">{title}</h2>
           <p className="section-desc">
-            Send a brief or just say hello — Thepakar and Naresh personally review every
-            inquiry.
+            {desc}
           </p>
         </Reveal>
 
         <div className="contact-grid">
           <Reveal>
             <div>
-              <ContactInfoItem icon="✉" label="Email" value={CONTACT.email} href={`mailto:${CONTACT.email}`} />
-              <ContactInfoItem icon="☎" label="Phone" value={CONTACT.phone} href={`tel:${CONTACT.phoneHref}`} />
-              <ContactInfoItem icon="◉" label="Location" value={CONTACT.location} />
+              <ContactInfoItem icon="✉" label="Email" value={contact?.email} href={`mailto:${contact?.email}`} />
+              <ContactInfoItem icon="☎" label="Phone" value={contact?.phone} href={`tel:${contact?.phoneHref}`} />
+              <ContactInfoItem icon="◉" label="Location" value={contact?.location} />
             </div>
           </Reveal>
 
