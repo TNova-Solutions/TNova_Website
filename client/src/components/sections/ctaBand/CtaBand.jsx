@@ -11,7 +11,7 @@ export default function CtaBand({ globalState, dispatch }) {
     const fetchBandData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/band`);
+        const response = await axios.get(`${API_BASE_URL}api/band`);
         dispatch(setCtaBand(response?.data))
         console.log(response)
       } catch (error) {

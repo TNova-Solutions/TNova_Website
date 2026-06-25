@@ -11,7 +11,7 @@ export default function Footer() {
     const fetchFooterData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/footer`);
+        const response = await axios.get(`${API_BASE_URL}api/footer`);
         console.log(response)
       } catch (error) {
         console.error("Error fetching footer data:", error);
