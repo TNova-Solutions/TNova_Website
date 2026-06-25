@@ -11,7 +11,7 @@ export default function Capabilities({ globalState, dispatch }) {
     const fetchCapabilitiesData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/capabilities`);
+        const response = await axios.get(`${API_BASE_URL}api/capabilities`);
         dispatch(setCapabilitiesData(response.data));
       } catch (error) {
         console.error("Error fetching capabilities data:", error);
