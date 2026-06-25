@@ -56,7 +56,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage globalState={globalState} dispatch={dispatch} />} />
-        <Route path="/capability/:slug" element={<DevelopmentPage />} />
+        <Route path="/development" element={<DevelopmentPage />} />
       </Routes>
     </BrowserRouter>
   );
