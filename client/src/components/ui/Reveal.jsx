@@ -1,4 +1,5 @@
 import { useInView } from "../../hooks/useInView";
+import "./Reveal.css";
 
 /**
  * Wraps children in a fade-up reveal that triggers once when scrolled

@@ -1,5 +1,7 @@
 
 
+import "./Marquee.css";
+
 export default function Marquee({ globalState }) {
   const { marquee } = globalState?.hero || {}
   return (

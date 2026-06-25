@@ -1,6 +1,6 @@
 // server.js
-const express = require('express');
 const cors = require('cors');
+const express = require('express');
 
 // 1. Import both objects from your data.js file
 const { Hero, Capabilities, Work, Process, Team, Band, Contact, Footer } = require('./data.js');

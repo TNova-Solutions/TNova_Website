@@ -1,0 +1,42 @@
+.marquee-wrap {
+  background: var(--slate-deep);
+  padding: 18px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(146, 3, 233, 0.15);
+  border-bottom: 1px solid rgba(146, 3, 233, 0.15);
+}
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: scrollMarquee 28s linear infinite;
+}
+
+.marquee-track {
+  display: flex;
+  gap: 56px;
+  padding-right: 56px;
+}
+
+@keyframes scrollMarquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-item {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.marquee-item b {
+  color: var(--emerald-bright);
+}

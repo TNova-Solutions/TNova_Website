@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import { TERMINAL_LINES } from "../../constants/content";
+import "./Terminal.css";
 
 /**
  * Simulates a terminal deploying a TNova project, typing line by line
