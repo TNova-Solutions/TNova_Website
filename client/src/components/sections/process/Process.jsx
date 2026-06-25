@@ -10,7 +10,7 @@ export default function Process({ globalState, dispatch }) {
     const fetchProcessData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/process`);
+        const response = await axios.get(`${API_BASE_URL}api/process`);
         dispatch(setProcessData(response?.data));
       } catch (error) {
         console.error("Error fetching process data:", error);

@@ -12,7 +12,7 @@ export default function Work({ globalState, dispatch }) {
     const fetchWorkData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/work`);
+        const response = await axios.get(`${API_BASE_URL}api/work`);
 
         dispatch(setWorkData(response?.data));
       } catch (error) {

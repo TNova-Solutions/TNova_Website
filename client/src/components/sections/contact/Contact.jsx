@@ -20,7 +20,7 @@ export default function Contact({globalState, dispatch}) {
     const fetchContactData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/contact`);
+        const response = await axios.get(`${API_BASE_URL}api/contact`);
         dispatch(setContactData(response?.data))
         console.log(response)
       } catch (error) {

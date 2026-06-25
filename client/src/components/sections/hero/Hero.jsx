@@ -13,7 +13,7 @@ export default function Hero({ globalState, dispatch }) {
     const fetchHeroData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}/api/hero`);
+        const response = await axios.get(`${API_BASE_URL}api/hero`);
         dispatch(setHeroData(response?.data));
       } catch (error) {
         console.error("Error fetching hero data:", error);
