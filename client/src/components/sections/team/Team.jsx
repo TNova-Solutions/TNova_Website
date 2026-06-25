@@ -1,7 +1,25 @@
-import Reveal from "../ui/Reveal";
-import { FOUNDERS } from "../../constants/theme";
+import Reveal from "../../ui/Reveal";
+import { FOUNDERS } from "../../../constants/theme";
+import { useEffect } from "react";
+import axios from "axios";
+import { API_BASE_URL } from "../../../config";
 
 export default function Team() {
+
+   useEffect(() => {
+    const fetchTeamData = async () => {
+      try {
+        // This will automatically use the correct URL for local vs production
+        const response = await axios.get(`${API_BASE_URL}/api/team`);
+        console.log(response)
+      } catch (error) {
+        console.error("Error fetching team data:", error);
+      }
+    };
+    fetchTeamData();
+  }, []);
+
+
   return (
     <section className="section section-tinted" id="team">
       <div className="section-inner">

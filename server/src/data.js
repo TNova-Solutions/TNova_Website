@@ -1,3 +1,6 @@
+
+const year = new Date().getFullYear();
+
 const Hero = {
     content: [{
         head: {
@@ -129,5 +132,83 @@ const Process = {
     ]
 
 }
+
+const Team = {
+    tag: "Leadership",
+    title: "Founded by two people who ship.",
+    desc: `TNova is run by its founders, end to end — from the first client call to the
+            final commit.`,
+    founders: [
+        {
+            initials: "TM",
+            name: "Thepakar Murugesan",
+            role: "Founder & Chief Executive Officer",
+            bio: "Leads client strategy, project scoping, and delivery across every TNova engagement — the first and last point of contact for every client.",
+        },
+        {
+            initials: "NK",
+            name: "Naresh Krishna",
+            role: "Co-Founder & Director",
+            bio: "Owns technical architecture and engineering delivery — from mobile apps and backend systems to machine learning pipelines.",
+        },
+    ]
+
+}
+
+const Band = {
+    title: "Have a build in mind?",
+    desc: `Tell us what you're building — we'll send back a scoped quotation within 48
+            hours.`
+}
+const Contact = {
+    tag: "Contact",
+    title: "Let's talk about what you're building.",
+    desc: `Send a brief or just say hello — Thepakar and Naresh personally review every
+            inquiry.`,
+    contact: {
+        email: "info@tnovasolutions.com",
+        phone: "+91 99448 80268",
+        phoneHref: "+919944880268",
+        location: "Tamil Nadu, India",
+        website: "www.tnovasolutions.com",
+    }
+}
+
+const Footer = {
+    brandName: "TNova Solutions",
+    tagLine: `Innovate · Integrate · Elevate`,
+    footerItem: [
+        {
+            title: "Services",
+            footerLink: [
+                { link: `AI &amp; Machine Learning` },
+                { link: `Mobile Apps` },
+                { link: `Backend &amp; APIs` },
+                { link: `Web Development` },
+            ]
+
+        },
+        {
+            title: "Company",
+            footerLink: [
+                { link: `Our Work` },
+                { link: `Process` },
+                { link: `Team` },
+                { link: `Contact` },
+            ]
+
+        }
+    ],
+    footerContact: {
+        email: `info@tnovasolutions.com"`,
+        phone: `+91 99448 80268`,
+        location: 'Tamil Nadu, India'
+    },
+    footerBottom: {
+        copyRights: `© ${year} TNova Solutions Pvt Ltd. All rights reserved.`,
+        website: `www.tnovasolutions.com`
+    }
+}
+
 // Export both at once
-module.exports = { Hero, Capabilities, Work, Process };
+module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, Footer };

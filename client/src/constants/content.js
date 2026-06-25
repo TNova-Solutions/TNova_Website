@@ -24,28 +24,7 @@ export const WORK_ITEMS = [
   },
 ];
 
-export const PROCESS_STEPS = [
-  {
-    n: "01",
-    title: "Scope & Quote",
-    desc: "We turn your brief into a fixed-scope quotation with module-by-module pricing — so you know exactly what you're paying for before work starts.",
-  },
-  {
-    n: "02",
-    title: "Build in Milestones",
-    desc: "Work is delivered in 3–4 milestones, each tied to a working deliverable: a trained model, a live API, a testable app build.",
-  },
-  {
-    n: "03",
-    title: "Test in the Real World",
-    desc: "Before final delivery, we validate against real conditions — field tests, user testing, or load testing, depending on the product.",
-  },
-  {
-    n: "04",
-    title: "Hand Off & Support",
-    desc: "You get full source code, documentation, and 30 days of post-launch support — no vendor lock-in, no black boxes.",
-  },
-];
+
 
 export const TERMINAL_LINES = [
   { text: "$ tnova deploy --env=production", colorVar: "--tn-text" },

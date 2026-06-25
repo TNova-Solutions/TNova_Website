@@ -1,8 +1,11 @@
-import { useState } from "react";
-import Reveal from "../ui/Reveal";
-import { CONTACT } from "../../constants/theme";
+import { useEffect, useState } from "react";
+import Reveal from "../../ui/Reveal";
+import { CONTACT } from "../../../constants/theme";
+import axios from "axios";
+import { API_BASE_URL } from "../../../config";
+import { setContactData } from "../../../redux/slice/ContactSlice";
 
-export default function Contact() {
+export default function Contact({globalState, dispatch}) {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -12,6 +15,20 @@ export default function Contact() {
     // Formspree/Resend, or your own FastAPI /contact route.
     setSubmitted(true);
   };
+
+  useEffect(() => {
+    const fetchContactData = async () => {
+      try {
+        // This will automatically use the correct URL for local vs production
+        const response = await axios.get(`${API_BASE_URL}/api/contact`);
+        dispatch(setContactData(response?.data))
+        console.log(response)
+      } catch (error) {
+        console.error("Error fetching contact data:", error);
+      }
+    };
+    fetchContactData();
+  }, []);
 
   return (
     <section className="section contact-section" id="contact">
