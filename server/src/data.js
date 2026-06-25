@@ -147,12 +147,14 @@ const Team = {
     founders: [
         {
             initials: "TM",
+            image: "/assets/ThepakarMurugesan.png",
             name: "Thepakar Murugesan",
             role: "Founder & Chief Executive Officer",
             bio: "Leads client strategy, project scoping, and delivery across every TNova engagement — the first and last point of contact for every client.",
         },
         {
             initials: "NK",
+            image: "/assets/NareshKrishna.jpeg",
             name: "Naresh Krishna",
             role: "Co-Founder & Director",
             bio: "Owns technical architecture and engineering delivery — from mobile apps and backend systems to machine learning pipelines.",

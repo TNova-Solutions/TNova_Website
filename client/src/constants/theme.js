@@ -17,25 +17,4 @@ export const TOKENS = {
   mutedInk: "#5C5C72",
 };
 
-export const CONTACT = {
-  email: "info@tnovasolutions.com",
-  phone: "+91 99448 80268",
-  phoneHref: "+919944880268",
-  location: "Tamil Nadu, India",
-  website: "www.tnovasolutions.com",
-};
 
-export const FOUNDERS = [
-  {
-    initials: "TM",
-    name: "Thepakar Murugesan",
-    role: "Founder & Chief Executive Officer",
-    bio: "Leads client strategy, project scoping, and delivery across every TNova engagement — the first and last point of contact for every client.",
-  },
-  {
-    initials: "NK",
-    name: "Naresh Krishna",
-    role: "Co-Founder & Director",
-    bio: "Owns technical architecture and engineering delivery — from mobile apps and backend systems to machine learning pipelines.",
-  },
-];

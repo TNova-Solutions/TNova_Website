@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { FOUNDERS } from "../../../constants/theme";
 import { setTeamData } from "../../../redux/slice/TeamSlice";
 import Reveal from "../../ui/Reveal";
 import "./Team.css";
 
-export default function Team({ dispatch }) {
+export default function Team({ globalState, dispatch }) {
+  const { tag, title, desc, founders } = globalState?.team || {}
 
   useEffect(() => {
     const fetchTeamData = async () => {
@@ -27,20 +27,20 @@ export default function Team({ dispatch }) {
     <section className="section section-tinted" id="team">
       <div className="section-inner">
         <Reveal>
-          <p className="section-tag">Leadership</p>
-          <h2 className="section-title">Founded by two people who ship.</h2>
-          <p className="section-desc">
-            TNova is run by its founders, end to end — from the first client call to the
-            final commit.
-          </p>
+          <p className="section-tag">{tag}</p>
+          <h2 className="section-title">{title}</h2>
+          <p className="section-desc">{desc}</p>
         </Reveal>
-
         <div className="team-grid">
-          {FOUNDERS.map((founder, i) => (
+          {founders?.map((founder, i) => (
             <Reveal key={founder.name} delay={i * 80}>
               <div className="team-card">
-                <div className="team-avatar" aria-hidden="true">
-                  {founder.initials}
+                <div className="team-avatar">
+                  {founder.image ? (
+                    <img src={founder.image} alt={founder.name} />
+                  ) : (
+                    founder.initials
+                  )}
                 </div>
                 <h3 className="team-name">{founder.name}</h3>
                 <p className="team-role">{founder.role}</p>
