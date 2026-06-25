@@ -1,0 +1,72 @@
+.tn-circuit-wrap {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.tn-circuit-grid {
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+@keyframes tn-travel-h {
+  0% {
+    left: -2%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    left: 102%;
+    opacity: 0;
+  }
+}
+
+.tn-pulse-h {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  animation-name: tn-travel-h;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes tn-travel-v {
+  0% {
+    top: -2%;
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    top: 102%;
+    opacity: 0;
+  }
+}
+
+.tn-pulse-v {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  animation-name: tn-travel-v;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}

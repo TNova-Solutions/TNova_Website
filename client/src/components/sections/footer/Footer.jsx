@@ -1,24 +1,28 @@
-import RibbonMark from "../../ui/RibbonMark";
-import { CONTACT } from "../../../constants/theme";
 import { useEffect } from "react";
-import axios from "axios";
-import { API_BASE_URL } from "../../../config";
 
-export default function Footer() {
+import axios from "axios";
+
+import { API_BASE_URL } from "../../../config";
+import { CONTACT } from "../../../constants/theme";
+import { setFooterData } from "../../../redux/slice/FooterSlice";
+import RibbonMark from "../../ui/RibbonMark";
+import "./Footer.css";
+
+export default function Footer({ _globalState, dispatch }) {
   const year = new Date().getFullYear();
 
- useEffect(() => {
+  useEffect(() => {
     const fetchFooterData = async () => {
       try {
         // This will automatically use the correct URL for local vs production
         const response = await axios.get(`${API_BASE_URL}api/footer`);
-        console.log(response)
+        dispatch(setFooterData(response?.data))
       } catch (error) {
         console.error("Error fetching footer data:", error);
       }
     };
     fetchFooterData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <footer className="footer">

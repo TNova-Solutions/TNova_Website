@@ -1,16 +1,36 @@
-import { useEffect } from 'react'
 import "./styles/global.css";
-import Nav from "./components/sections/nav/Nav";
+import { useSelector, useDispatch } from 'react-redux';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import Capabilities from "./components/sections/capabilities/Capabilities";
+import Contact from "./components/sections/contact/Contact";
+import CtaBand from "./components/sections/ctaBand/CtaBand";
+import Footer from "./components/sections/footer/Footer";
 import Hero from "./components/sections/hero/Hero";
 import Marquee from "./components/sections/marquee/Marquee";
-import Capabilities from "./components/sections/capabilities/Capabilities";
-import Work from "./components/sections/work/Work";
+import Nav from "./components/sections/nav/Nav";
 import Process from "./components/sections/process/Process";
 import Team from "./components/sections/team/Team";
-import CtaBand from "./components/sections/ctaBand/CtaBand";
-import Contact from "./components/sections/contact/Contact";
-import Footer from "./components/sections/footer/Footer";
-import { useSelector, useDispatch } from 'react-redux';
+import Work from "./components/sections/work/Work";
+import DevelopmentPage from "./pages/DevelopmentPage";
+
+function HomePage({ globalState, dispatch }) {
+  return (
+    <div className="tnova-root">
+      <Nav globalState={globalState} dispatch={dispatch} />
+      <Hero globalState={globalState} dispatch={dispatch} />
+      <Marquee globalState={globalState} dispatch={dispatch} />
+      <Capabilities globalState={globalState} dispatch={dispatch} />
+      <Work globalState={globalState} dispatch={dispatch} />
+      <Process globalState={globalState} dispatch={dispatch} />
+      <Team globalState={globalState} dispatch={dispatch} />
+      <CtaBand globalState={globalState} dispatch={dispatch} />
+      <Contact globalState={globalState} dispatch={dispatch} />
+      <Footer globalState={globalState} dispatch={dispatch} />
+    </div>
+  );
+}
+
 
 /**
  * TNova Solutions — marketing site.
@@ -31,18 +51,13 @@ export default function App() {
   const dispatch = useDispatch()
   const globalState = useSelector((state) => state);
   console.log("globalState", globalState);
+  
   return (
-    <div className="tnova-root">
-      <Nav globalState={globalState} dispatch={dispatch} />
-      <Hero globalState={globalState} dispatch={dispatch} />
-      <Marquee globalState={globalState} dispatch={dispatch} />
-      <Capabilities globalState={globalState} dispatch={dispatch} />
-      <Work globalState={globalState} dispatch={dispatch} />
-      <Process globalState={globalState} dispatch={dispatch} />
-      <Team globalState={globalState} dispatch={dispatch} />
-      <CtaBand globalState={globalState} dispatch={dispatch} />
-      <Contact globalState={globalState} dispatch={dispatch} />
-      <Footer globalState={globalState} dispatch={dispatch} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<HomePage globalState={globalState} dispatch={dispatch} />} />
+        <Route path="/capability/:slug" element={<DevelopmentPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }

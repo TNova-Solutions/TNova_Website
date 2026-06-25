@@ -1,8 +1,11 @@
-import Reveal from "../../ui/Reveal.jsx";
 import { useEffect } from "react";
+
+import axios from "axios";
+
 import { API_BASE_URL } from '../../../config.js'
 import { setCapabilitiesData } from "../../../redux/slice/CapabilitiesSlice.js";
-import axios from "axios";
+import Reveal from "../../ui/Reveal.jsx";
+import "./Capabilities.css";
 
 export default function Capabilities({ globalState, dispatch }) {
   const { tag, title, desc, services } = globalState?.capabilities || {}
@@ -18,7 +21,7 @@ export default function Capabilities({ globalState, dispatch }) {
       }
     };
     fetchCapabilitiesData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <section className="section" id="capabilities">
       <div className="section-inner">
@@ -49,6 +52,14 @@ export default function Capabilities({ globalState, dispatch }) {
                         {tag}
                       </span>
                     ))}
+                  </div>
+                  <div className="cap-actions">
+                    <a
+                      href={`/capability/${cap?.slug}`}
+                      className="btn-ghost cap-more"
+                    >
+                      See more
+                    </a>
                   </div>
                 </div>
               </div>

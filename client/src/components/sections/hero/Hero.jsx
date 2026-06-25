@@ -1,10 +1,15 @@
-import CircuitBackground from "../../ui/CircuitBackground";
-import Terminal from "../../ui/Terminal";
-import AnimatedCounter from "../../ui/AnimatedCounter";
 import { useEffect } from "react";
+
+import axios from 'axios';
+
 import { API_BASE_URL } from '../../../config.js';
 import { setHeroData } from "../../../redux/slice/HeroSlice.js";
-import axios from 'axios';
+import AnimatedCounter from "../../ui/AnimatedCounter";
+import CircuitBackground from "../../ui/CircuitBackground";
+import Terminal from "../../ui/Terminal";
+
+
+import "./Hero.css";
 
 export default function Hero({ globalState, dispatch }) {
   const { content, stats } = globalState?.hero || {}
@@ -21,7 +26,7 @@ export default function Hero({ globalState, dispatch }) {
     };
 
     fetchHeroData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <header className="hero" id="top">
       <CircuitBackground />

@@ -1,0 +1,127 @@
+.contact-section {
+  background: white;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  margin-top: 56px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+.contact-info-item {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin-bottom: 28px;
+}
+
+.contact-info-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  background: var(--paper-dim);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--emerald);
+  font-size: 18px;
+}
+
+.contact-info-label {
+  font-size: 12.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 3px;
+}
+
+.contact-info-value {
+  font-size: 16px;
+  color: var(--ink);
+  font-weight: 600;
+  word-break: break-word;
+}
+
+.contact-info-link {
+  text-decoration: none;
+  display: inline-block;
+  transition: color 0.2s;
+}
+
+.contact-info-link:hover {
+  color: var(--emerald);
+}
+
+.form-field {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  font-size: 13.5px;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1.5px solid var(--paper-dim);
+  border-radius: 10px;
+  font-size: 15px;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--emerald);
+  background: white;
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+.form-submit {
+  background: var(--slate);
+  color: white;
+  padding: 15px 32px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+}
+
+.form-submit:hover {
+  background: var(--emerald);
+}
+
+.form-success {
+  background: rgba(86, 41, 242, 0.1);
+  border: 1px solid var(--emerald);
+  border-radius: 10px;
+  padding: 16px;
+  color: var(--emerald-dim);
+  font-size: 14.5px;
+}

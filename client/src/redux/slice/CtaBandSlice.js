@@ -6,11 +6,11 @@ export const ctaBandSlice = createSlice({
     name: 'ctaBandSection',
     initialState,
     reducers: {
-        setCtaBand: (state, action) => {
+        setCtaBandData: (state, action) => {
             return action.payload;
         },
     }
 });
 
-export const { setCtaBand } = ctaBandSlice.actions;
+export const { setCtaBandData } = ctaBandSlice.actions;
 export default ctaBandSlice.reducer;

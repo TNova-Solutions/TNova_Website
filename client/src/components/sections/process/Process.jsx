@@ -1,8 +1,11 @@
-import Reveal from "../../ui/Reveal";
 import { useEffect } from "react";
+
+import axios from "axios";
+
 import { API_BASE_URL } from "../../../config";
 import { setProcessData } from "../../../redux/slice/ProcessSlice";
-import axios from "axios";
+import Reveal from "../../ui/Reveal";
+import "./Process.css";
 
 export default function Process({ globalState, dispatch }) {
   const { tag, title, desc, processSteps } = globalState?.process || {}
@@ -17,7 +20,7 @@ export default function Process({ globalState, dispatch }) {
       }
     };
     fetchProcessData()
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <section className="section" id="process">
       <div className="section-inner">

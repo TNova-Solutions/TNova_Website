@@ -1,10 +1,14 @@
+import { useEffect } from "react";
+
+import axios from "axios";
+
+import { API_BASE_URL } from "../../../config";
+import { setWorkData } from "../../../redux/slice/WorkSlice";
 import Reveal from "../../ui/Reveal";
 import RibbonMark from "../../ui/RibbonMark";
-import { WORK_ITEMS } from "../../../constants/content";
-import { setWorkData } from "../../../redux/slice/WorkSlice";
-import { useEffect } from "react";
-import { API_BASE_URL } from "../../../config";
-import axios from "axios";
+
+
+import "./Work.css";
 
 export default function Work({ globalState, dispatch }) {
   const { tag, title, desc, workItems } = globalState?.work || {}
@@ -13,14 +17,13 @@ export default function Work({ globalState, dispatch }) {
       try {
         // This will automatically use the correct URL for local vs production
         const response = await axios.get(`${API_BASE_URL}api/work`);
-
         dispatch(setWorkData(response?.data));
       } catch (error) {
         console.error("Error fetching work data:", error);
       }
     };
     fetchWorkData()
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <section className="section work-section" id="work">
       <div className="section-inner">

@@ -6,8 +6,7 @@ export const processSlice = createSlice({
     name: 'processSection',
     initialState,
     reducers: {
-        setProcessData: (state, action) => {
-        
+        setProcessData: (state, action) => {        
             return action.payload;
         },
     }

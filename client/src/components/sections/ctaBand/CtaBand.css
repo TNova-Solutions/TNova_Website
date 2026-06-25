@@ -1,0 +1,65 @@
+.cta-band-wrap {
+  padding: 0;
+}
+
+.cta-band {
+  background: var(--slate);
+  border-radius: 28px;
+  padding: 72px 56px;
+  margin: 0 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-band-glow {
+  position: absolute;
+  top: -30%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(86, 41, 242, 0.25), transparent 70%);
+  pointer-events: none;
+}
+
+.cta-title {
+  color: white;
+  font-size: clamp(28px, 4vw, 44px);
+  margin-bottom: 18px;
+  position: relative;
+  z-index: 1;
+}
+
+.cta-sub {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  margin-bottom: 36px;
+  position: relative;
+  z-index: 1;
+  display: block;
+  padding: 4% 0%;
+}
+
+.cta-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .cta-band {
+    margin: 0 16px;
+    padding: 56px 28px;
+  }
+}
+
+@media (max-width: 380px) {
+  .cta-band {
+    margin: 0 12px;
+    padding: 44px 22px;
+  }
+}

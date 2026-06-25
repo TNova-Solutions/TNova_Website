@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import Reveal from "../../ui/Reveal";
-import { CONTACT } from "../../../constants/theme";
-import axios from "axios";
-import { API_BASE_URL } from "../../../config";
-import { setContactData } from "../../../redux/slice/ContactSlice";
 
-export default function Contact({globalState, dispatch}) {
+import axios from "axios";
+
+import { API_BASE_URL } from "../../../config";
+import { CONTACT } from "../../../constants/theme";
+import { setContactData } from "../../../redux/slice/ContactSlice";
+import Reveal from "../../ui/Reveal";
+import "./Contact.css";
+
+export default function Contact({ dispatch }) {
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -22,20 +25,19 @@ export default function Contact({globalState, dispatch}) {
         // This will automatically use the correct URL for local vs production
         const response = await axios.get(`${API_BASE_URL}api/contact`);
         dispatch(setContactData(response?.data))
-        console.log(response)
       } catch (error) {
         console.error("Error fetching contact data:", error);
       }
     };
     fetchContactData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="section contact-section" id="contact">
       <div className="section-inner">
         <Reveal>
           <p className="section-tag">Contact</p>
-          <h2 className="section-title">Let's talk about what you're building.</h2>
+          <h2 className="section-title">Let&apos;s talk about what you&apos;re building.</h2>
           <p className="section-desc">
             Send a brief or just say hello — Thepakar and Naresh personally review every
             inquiry.
@@ -54,7 +56,7 @@ export default function Contact({globalState, dispatch}) {
           <Reveal delay={80}>
             {submitted ? (
               <div className="form-success" role="status">
-                Thanks — your message has been noted. We'll get back to you within 48
+                Thanks — your message has been noted. We&apos;ll get back to you within 48
                 hours at the email you provided.
               </div>
             ) : (

@@ -1,4 +1,5 @@
 import { CIRCUIT_PULSES } from "../../constants/content";
+import "./CircuitBackground.css";
 
 /**
  * Faint grid + travelling light pulses behind the hero text.

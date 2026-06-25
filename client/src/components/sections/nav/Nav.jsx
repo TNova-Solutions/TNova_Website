@@ -1,7 +1,9 @@
 import { useState } from "react";
-import RibbonMark from "../../ui/RibbonMark";
-import { useScrolled } from "../../../hooks/useScrolled";
+
 import { NAV_LINKS } from "../../../constants/content";
+import { useScrolled } from "../../../hooks/useScrolled";
+import RibbonMark from "../../ui/RibbonMark";
+import "./Nav.css";
 
 
 export default function Nav() {
