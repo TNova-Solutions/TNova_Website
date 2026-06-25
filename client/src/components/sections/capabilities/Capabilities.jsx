@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 
 import axios from "axios";
+import { Link } from "react-router-dom";
+
 
 import { API_BASE_URL } from '../../../config.js'
 import { setCapabilitiesData } from "../../../redux/slice/CapabilitiesSlice.js";
@@ -54,12 +56,12 @@ export default function Capabilities({ globalState, dispatch }) {
                     ))}
                   </div>
                   <div className="cap-actions">
-                    <a
-                      href={`/capability/${cap?.slug}`}
+                    <Link
+                      to="/development"
                       className="btn-ghost cap-more"
                     >
                       See more
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
