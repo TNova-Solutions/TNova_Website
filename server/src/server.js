@@ -3,7 +3,7 @@ const cors = require('cors');
 const express = require('express');
 
 // 1. Import both objects from your data.js file
-const { Hero, Capabilities, Work, Process, Team, Band, Contact, Footer } = require('./data.js');
+const { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer } = require('./data.js');
 
 const app = express();
 app.use(cors());
@@ -71,6 +71,40 @@ app.get('/api/contact', (req, res) => {
 app.get('/api/footer', (req, res) => {
     // Sends only the footer object
     res.json(Footer);
+});
+
+//================================================================================================================
+// POST API CALL FOR CONTACT FORM   
+//================================================================================================================
+app.post('/api/user', (req, res) => {
+    const { name, email, message } = req.body;
+
+    if (!name) {
+        return res.status(400).json({ error: 'Name is required.' });
+    }
+
+    if (!email) {
+        return res.status(400).json({ error: 'Email is required.' });
+    }
+
+    if (!message) {
+        return res.status(400).json({ error: 'Message is required.' });
+    }
+
+    const submission = {
+        name,
+        email,
+        message,
+        receivedAt: new Date().toISOString(),
+    };
+
+    User.submissions.push(submission);
+    res.status(200).json({
+        message: 'Thanks for your message..!!',
+        success: 'Your submission has been received successfully.',
+        submitMsg: User.submitMsg,
+        data: submission,
+    });
 });
 
 // Only listen locally. In production, Vercel handles this.
