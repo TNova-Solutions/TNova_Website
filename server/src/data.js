@@ -193,7 +193,7 @@ const Footer = {
             footerLink: [
                 { link: `AI & Machine Learning` },
                 { link: `Mobile Apps` },
-                { link: `Backend &amp; APIs` },
+                { link: `Backend & APIs` },
                 { link: `Web Development` },
             ]
 
