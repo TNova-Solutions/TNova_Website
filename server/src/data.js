@@ -191,7 +191,7 @@ const Footer = {
         {
             title: "Services",
             footerLink: [
-                { link: `AI &amp; Machine Learning` },
+                { link: `AI & Machine Learning` },
                 { link: `Mobile Apps` },
                 { link: `Backend &amp; APIs` },
                 { link: `Web Development` },
