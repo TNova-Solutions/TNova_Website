@@ -3,7 +3,7 @@ const currentUrl = window.location.origin;
 
 const backendUrl = currentUrl.replace(":5173", ":5000")
 
-const prodUrl = `https://t-nova-website-hzyx.vercel.app/`
+const prodUrl = `https://t-nova-website-bh11.vercel.app/`
 
 
 export const API_BASE_URL = import.meta.env.PROD ? prodUrl : `${backendUrl}/`;
