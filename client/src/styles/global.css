@@ -19,6 +19,11 @@ body {
   margin: 0;
 }
 
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 .tnova-root {
   --slate: #13131F;
   --slate-mid: #1A1A33;
