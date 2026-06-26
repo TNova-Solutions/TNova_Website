@@ -180,8 +180,12 @@ const Contact = {
         location: "Tamil Nadu, India",
         website: "www.tnovasolutions.com",
     },
-    submitMsg: `Thanks — your message has been noted. We&apos;ll get back to you within 48
-                hours at the email you provid.`
+}
+
+const User = {
+    submitMsg: `Your message has been noted. We will get back to you within 48
+                hours at the email you provide.`,
+    submissions: [],
 }
 
 const Footer = {
@@ -221,4 +225,4 @@ const Footer = {
 }
 
 // Export both at once
-module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, Footer };
+module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer };

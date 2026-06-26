@@ -4,20 +4,69 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setContactData } from "../../../redux/slice/ContactSlice";
+import { setUserData } from "../../../redux/slice/UserSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./Contact.css";
 
-export default function Contact({ globalState, dispatch }) {
-  const { tag, title, desc, contact, submitMsg } = globalState?.contact || {}
-  const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // NOTE: this is a static front-end form. To actually receive
-    // submissions, wire this up to a backend endpoint, a service like
-    // Formspree/Resend, or your own FastAPI /contact route.
-    setSubmitted(true);
+export default function Contact({ globalState, dispatch }) {
+  const { tag, title, desc, contact } = globalState?.contact || {}
+  const { message, submitMsg, } = globalState?.user || {}
+  const [submitted, setSubmitted] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+  const [submitError, setSubmitError] = useState("");
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setSubmitError("");
+
+    try {
+      const response = await axios.post(`${API_BASE_URL}api/user`, formData);
+
+      dispatch(setUserData(response?.data))
+      setSubmitted(true);
+      setShowPopup(true);
+    } catch (error) {
+      console.error("Error submitting contact form:", error);
+      const message = error?.response?.data?.error || "Unable to submit form. Please try again.";
+      setSubmitError(message);
+    }
+  };
+
+  useEffect(() => {
+    if (submitted) {
+      const timer = setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      }, 5000); // Reset after 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [submitted]);
+
+  useEffect(() => {
+    if (showPopup) {
+      const timer = setTimeout(() => setShowPopup(false), 10000);
+      return () => clearTimeout(timer);
+    }
+  }, [showPopup]);
 
   useEffect(() => {
     const fetchContactData = async () => {
@@ -53,31 +102,77 @@ export default function Contact({ globalState, dispatch }) {
           </Reveal>
 
           <Reveal delay={80}>
-            {submitted ? (
-              <div className="form-success" role="status">
-                {submitMsg}
+            <form onSubmit={handleSubmit}>
+              {submitError && (
+                <div className="form-error" role="alert">
+                  {submitError}
+                </div>
+              )}
+              <div className="form-field">
+                <label className="form-label" htmlFor="contact-name">Name</label>
+                <input
+                  id="contact-name"
+                  name="name"
+                  className="form-input"
+                  type="text"
+                  placeholder="Your full name"
+                  required
+                  value={formData.name}
+                  onChange={handleInputChange}
+                />
               </div>
-            ) : (
-              <form onSubmit={handleSubmit}>
-                <div className="form-field">
-                  <label className="form-label" htmlFor="contact-name">Name</label>
-                  <input id="contact-name" className="form-input" type="text" placeholder="Your full name" required />
-                </div>
-                <div className="form-field">
-                  <label className="form-label" htmlFor="contact-email">Email</label>
-                  <input id="contact-email" className="form-input" type="email" placeholder="you@company.com" required />
-                </div>
-                <div className="form-field">
-                  <label className="form-label" htmlFor="contact-msg">Project details</label>
-                  <textarea id="contact-msg" className="form-textarea" placeholder="Tell us what you're building..." required />
-                </div>
-                <button className="form-submit" type="submit">
-                  Send message
-                </button>
-              </form>
-            )}
+              <div className="form-field">
+                <label className="form-label" htmlFor="contact-email">Email</label>
+                <input
+                  id="contact-email"
+                  name="email"
+                  className="form-input"
+                  type="email"
+                  placeholder="you@company.com"
+                  required
+                  value={formData.email}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <div className="form-field">
+                <label className="form-label" htmlFor="contact-msg">Project details</label>
+                <textarea
+                  id="contact-msg"
+                  name="message"
+                  className="form-textarea"
+                  placeholder="Tell us what you're building..."
+                  required
+                  value={formData.message}
+                  onChange={handleInputChange}
+                />
+              </div>
+              <button className="form-submit" type="submit">
+                Send message
+              </button>
+            </form>
           </Reveal>
         </div>
+
+        {showPopup && (
+          <div className="success-popup-overlay" role="dialog" aria-live="polite">
+            <div className="success-popup">
+              <button
+                type="button"
+                className="success-popup-close"
+                onClick={() => setShowPopup(false)}
+                aria-label="Close success popup"
+              >
+                ×
+              </button>
+
+              <div className="success-popup-content">
+                <div className="success-popup-icon" aria-hidden="true">✓</div>
+                <h3>{message}</h3>
+                <p>{submitMsg}</p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );

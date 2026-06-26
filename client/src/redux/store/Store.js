@@ -8,6 +8,7 @@ import { footerSlice } from '../slice/FooterSlice';
 import { heroSlice } from '../slice/HeroSlice';
 import { processSlice } from '../slice/ProcessSlice';
 import { teamSlice } from '../slice/TeamSlice';
+import { userSlice } from '../slice/UserSlice';
 import { workSlice } from '../slice/WorkSlice';
 
 export const store = configureStore({
@@ -21,6 +22,6 @@ export const store = configureStore({
     process: processSlice.reducer,
     team: teamSlice.reducer,
     work: workSlice.reducer,
-
+    user: userSlice.reducer
   },
 });
