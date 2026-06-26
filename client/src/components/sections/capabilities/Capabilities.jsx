@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 import { API_BASE_URL } from '../../../config.js'
 import { setCapabilitiesData } from "../../../redux/slice/CapabilitiesSlice.js";
-import Reveal from "../../ui/Reveal.jsx";
+import Reveal from "../../animation/reveal/Reveal.jsx";
 import "./Capabilities.css";
 
 export default function Capabilities({ globalState, dispatch }) {

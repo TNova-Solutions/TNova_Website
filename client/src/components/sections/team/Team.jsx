@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setTeamData } from "../../../redux/slice/TeamSlice";
-import Reveal from "../../ui/Reveal";
+import Reveal from "../../animation/reveal/Reveal";
 import "./Team.css";
 
 export default function Team({ globalState, dispatch }) {

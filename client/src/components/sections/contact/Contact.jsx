@@ -4,11 +4,11 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setContactData } from "../../../redux/slice/ContactSlice";
-import Reveal from "../../ui/Reveal";
+import Reveal from "../../animation/reveal/Reveal";
 import "./Contact.css";
 
 export default function Contact({ globalState, dispatch }) {
-  const { tag, title, desc, contact } = globalState?.contact || {}
+  const { tag, title, desc, contact, submitMsg } = globalState?.contact || {}
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e) => {
@@ -55,8 +55,7 @@ export default function Contact({ globalState, dispatch }) {
           <Reveal delay={80}>
             {submitted ? (
               <div className="form-success" role="status">
-                Thanks — your message has been noted. We&apos;ll get back to you within 48
-                hours at the email you provided.
+                {submitMsg}
               </div>
             ) : (
               <form onSubmit={handleSubmit}>

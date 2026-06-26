@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { TERMINAL_LINES } from "../../constants/content";
+import { TERMINAL_LINES } from "../../../constants/content";
 import "./Terminal.css";
 
 /**

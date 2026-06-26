@@ -16,5 +16,3 @@ export const TOKENS = {
   ink: "#13131F",
   mutedInk: "#5C5C72",
 };
-
-

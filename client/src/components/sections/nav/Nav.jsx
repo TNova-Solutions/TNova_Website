@@ -1,8 +1,10 @@
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import { NAV_LINKS } from "../../../constants/content";
 import { useScrolled } from "../../../hooks/useScrolled";
-import RibbonMark from "../../ui/RibbonMark";
+import RibbonMark from "../../animation/ribbonMark/RibbonMark";
 import "./Nav.css";
 
 
@@ -13,16 +15,14 @@ export default function Nav() {
   return (
     <>
       <nav className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <div
+        <Link 
+          to="/" 
           className="nav-brand"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => e.key === "Enter" && window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <RibbonMark size={34} />
           <span className="nav-brand-name">TNova Solutions</span>
-        </div>
+        </Link>
 
         <div className="nav-links">
           {NAV_LINKS.map((l) => (
