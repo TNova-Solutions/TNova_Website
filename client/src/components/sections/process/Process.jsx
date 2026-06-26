@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setProcessData } from "../../../redux/slice/ProcessSlice";
-import Reveal from "../../ui/Reveal";
+import Reveal from "../../animation/reveal/Reveal";
 import "./Process.css";
 
 export default function Process({ globalState, dispatch }) {

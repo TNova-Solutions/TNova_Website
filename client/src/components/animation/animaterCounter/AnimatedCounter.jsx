@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { useInView } from "../../hooks/useInView";
+import { useInView } from "../../../hooks/useInView";
 
 /**
  * Counts up from 0 to `value` with an ease-out curve, starting the moment

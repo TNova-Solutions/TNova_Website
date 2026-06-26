@@ -4,12 +4,12 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setFooterData } from "../../../redux/slice/FooterSlice";
-import RibbonMark from "../../ui/RibbonMark";
+import RibbonMark from "../../animation/ribbonMark/RibbonMark";
 import "./Footer.css";
 
 export default function Footer({ globalState, dispatch }) {
-  const year = new Date().getFullYear();
-  const { contact } = globalState?.contact || {}
+  const { brandName, tagLine, footerItem, footerContact, footerBottom } = globalState?.footer || {}
+
 
   useEffect(() => {
     const fetchFooterData = async () => {
@@ -30,38 +30,33 @@ export default function Footer({ globalState, dispatch }) {
         <div>
           <div className="footer-brand">
             <RibbonMark size={32} />
-            <span className="footer-brand-name">TNova Solutions</span>
+            <span className="footer-brand-name">{brandName}</span>
           </div>
-          <p className="footer-tagline">Innovate · Integrate · Elevate</p>
+          <p className="footer-tagline">{tagLine}</p>
         </div>
 
-        <div>
-          <p className="footer-col-title">Services</p>
-          <a className="footer-link" href="#capabilities">AI &amp; Machine Learning</a>
-          <a className="footer-link" href="#capabilities">Mobile Apps</a>
-          <a className="footer-link" href="#capabilities">Backend &amp; APIs</a>
-          <a className="footer-link" href="#capabilities">Web Development</a>
-        </div>
-
-        <div>
-          <p className="footer-col-title">Company</p>
-          <a className="footer-link" href="#work">Our Work</a>
-          <a className="footer-link" href="#process">Process</a>
-          <a className="footer-link" href="#team">Team</a>
-          <a className="footer-link" href="#contact">Contact</a>
-        </div>
+        {footerItem?.map((item, index) => (
+          <div key={index}>
+            <p className="footer-col-title">{item?.title}</p>
+            {item?.footerLink?.map((link) => (
+              <a key={link?.link} className="footer-link" href={link?.link}>
+                {link?.link}
+              </a>
+            ))}
+          </div>
+        ))}
 
         <div>
           <p className="footer-col-title">Get in touch</p>
-          <a className="footer-link" href={`mailto:${contact?.email}`}>{contact?.email}</a>
-          <a className="footer-link" href={`tel:${contact?.phoneHref}`}>{contact?.phone}</a>
-          <span className="footer-link footer-link-static">{contact?.location}</span>
+          <a className="footer-link" href={`mailto:${footerContact?.email}`}>{footerContact?.email}</a>
+          <a className="footer-link" href={`tel:${footerContact?.phoneHref}`}>{footerContact?.phone}</a>
+          <span className="footer-link footer-link-static">{footerContact?.location}</span>
         </div>
       </div>
 
       <div className="footer-bottom">
-        <span className="footer-bottom-text">© {year} TNova Solutions Pvt Ltd. All rights reserved.</span>
-        <span className="footer-bottom-text">{contact?.website}</span>
+        <span className="footer-bottom-text">{footerBottom?.copyRights}</span>
+        <span className="footer-bottom-text">{footerBottom?.website}</span>
       </div>
     </footer>
   );

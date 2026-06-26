@@ -1,4 +1,4 @@
-import { CIRCUIT_PULSES } from "../../constants/content";
+import { CIRCUIT_PULSES } from "../../../constants/content";
 import "./CircuitBackground.css";
 
 /**

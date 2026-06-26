@@ -1,7 +1,19 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './DevelopmentPage.css';
 
 export default function DevelopmentPage() {
+  const navigate = useNavigate();
+
+  const handleBackToCapabilities = () => {
+    navigate('/');
+    setTimeout(() => {
+      const capabilitiesSection = document.getElementById('capabilities');
+      if (capabilitiesSection) {
+        capabilitiesSection.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
+
   return (
     <div className="development-container">
       <div className="development-content">
@@ -40,9 +52,9 @@ export default function DevelopmentPage() {
           We&apos;re currently building something amazing. Check back soon for updates!
         </p>
 
-        <Link to="/" className="development-button">
+        <button onClick={handleBackToCapabilities} className="development-button">
           Back to Home
-        </Link>
+        </button>
       </div>
     </div>
   );

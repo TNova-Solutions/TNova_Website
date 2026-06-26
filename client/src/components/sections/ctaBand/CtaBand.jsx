@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setCtaBandData } from "../../../redux/slice/CtaBandSlice";
-import Reveal from "../../ui/Reveal";
+import Reveal from "../../animation/reveal/Reveal";
 import "./CtaBand.css";
 
 

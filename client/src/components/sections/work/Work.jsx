@@ -4,8 +4,8 @@ import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
 import { setWorkData } from "../../../redux/slice/WorkSlice";
-import Reveal from "../../ui/Reveal";
-import RibbonMark from "../../ui/RibbonMark";
+import Reveal from "../../animation/reveal/Reveal";
+import RibbonMark from "../../animation/ribbonMark/RibbonMark";
 
 
 import "./Work.css";
