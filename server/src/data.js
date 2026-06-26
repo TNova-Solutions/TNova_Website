@@ -210,7 +210,7 @@ const Footer = {
         }
     ],
     footerContact: {
-        email: `info@tnovasolutions.com"`,
+        email: `info@tnovasolutions.com`,
         phone: `+91 99448 80268`,
         location: 'Tamil Nadu, India'
     },
