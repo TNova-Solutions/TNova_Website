@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 import { API_BASE_URL } from '../../../config.js'
-import { setCapabilitiesData } from "../../../redux/slice/CapabilitiesSlice.js";
+import { setCapabilitiesData } from "../../../redux/slice/capabilities/CapabilitiesSlice.js";
 import Reveal from "../../animation/reveal/Reveal.jsx";
 import "./Capabilities.css";
 
@@ -17,7 +17,7 @@ export default function Capabilities({ globalState, dispatch }) {
       try {
         // This will automatically use the correct URL for local vs production
         const response = await axios.get(`${API_BASE_URL}api/capabilities`);
-        dispatch(setCapabilitiesData(response.data));
+        dispatch(setCapabilitiesData(response?.data));
       } catch (error) {
         console.error("Error fetching capabilities data:", error);
       }

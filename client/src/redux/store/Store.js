@@ -1,15 +1,15 @@
 // src/app/store.js
 import { configureStore } from '@reduxjs/toolkit';
 
-import { capabilitiesSlice } from '../slice/CapabilitiesSlice';
-import { contactSlice } from '../slice/ContactSlice';
-import { ctaBandSlice } from '../slice/CtaBandSlice';
-import { footerSlice } from '../slice/FooterSlice';
-import { heroSlice } from '../slice/HeroSlice';
-import { processSlice } from '../slice/ProcessSlice';
-import { teamSlice } from '../slice/TeamSlice';
-import { userSlice } from '../slice/UserSlice';
-import { workSlice } from '../slice/WorkSlice';
+import { capabilitiesSlice } from '../slice/capabilities/CapabilitiesSlice';
+import { contactSlice } from '../slice/contact/ContactSlice';
+import { ctaBandSlice } from '../slice/ctaBand/CtaBandSlice';
+import { footerSlice } from '../slice/footer/FooterSlice';
+import { heroSlice } from '../slice/hero/HeroSlice';
+import { processSlice } from '../slice/process/ProcessSlice';
+import { teamSlice } from '../slice/team/TeamSlice';
+import { userSlice } from '../slice/user/UserSlice';
+import { workSlice } from '../slice/work/WorkSlice';
 
 export const store = configureStore({
   reducer: {

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { setFooterData } from "../../../redux/slice/FooterSlice";
+import { setFooterData } from "../../../redux/slice/footer/FooterSlice";
 import RibbonMark from "../../animation/ribbonMark/RibbonMark";
 import "./Footer.css";
 

@@ -11,7 +11,12 @@
     "install": "npm install --prefix client && npm install --prefix server",
     "lint": "eslint . --ext .js,.jsx",
     "lint:fix": "eslint . --ext .js,.jsx --fix",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "testClient": "cd client && npm run test",
+    "testServer": "cd server && npm run test",
+    "testClient:coverage": "cd client && npm run test:coverage",
+    "testServer:coverage": "cd server && npm run test:coverage",
+    "test": "concurrently \"npm run testServer\" \"npm run testClient\"",
+    "test:coverage": "concurrently \"npm run testServer:coverage\" \"npm run testClient:coverage\""
   },
   "repository": {
     "type": "git",

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { setProcessData } from "../../../redux/slice/ProcessSlice";
+import { setProcessData } from "../../../redux/slice/process/ProcessSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./Process.css";
 

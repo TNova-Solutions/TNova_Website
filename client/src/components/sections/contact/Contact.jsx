@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { setContactData } from "../../../redux/slice/ContactSlice";
-import { setUserData } from "../../../redux/slice/UserSlice";
+import { setContactData } from "../../../redux/slice/contact/ContactSlice";
+import { setUserData } from "../../../redux/slice/user/UserSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./Contact.css";
 
