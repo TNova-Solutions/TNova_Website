@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from 'axios';
 
 import { API_BASE_URL } from '../../../config.js';
-import { setHeroData } from "../../../redux/slice/HeroSlice.js";
+import { setHeroData } from "../../../redux/slice/hero/HeroSlice.js";
 import AnimatedCounter from "../../animation/animaterCounter/AnimatedCounter.jsx";
 import CircuitBackground from "../../animation/circuitBackground/CircuitBackground.jsx";
 import Terminal from "../../animation/terminal/Terminal.jsx";

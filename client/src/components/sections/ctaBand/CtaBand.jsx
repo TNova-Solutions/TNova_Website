@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { setCtaBandData } from "../../../redux/slice/CtaBandSlice";
+import { setCtaBandData } from "../../../redux/slice/ctaBand/CtaBandSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./CtaBand.css";
 

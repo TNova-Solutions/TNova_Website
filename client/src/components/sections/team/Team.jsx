@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import axios from "axios";
 
 import { API_BASE_URL } from "../../../config";
-import { setTeamData } from "../../../redux/slice/TeamSlice";
+import { setTeamData } from "../../../redux/slice/team/TeamSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./Team.css";
 

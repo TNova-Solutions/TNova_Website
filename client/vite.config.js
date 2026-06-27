@@ -7,5 +7,18 @@ export default defineConfig({
     proxy: {
       '/api': 'http://localhost:5000'
     }
-  }
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: './src/test/setupTests.js',
+    coverage: {
+      provider: 'v8',
+      reporter: ['text', 'html', 'lcov'],
+      reportsDirectory: './coverage',
+    },
+  },
+  esbuild: {
+    jsxInject: 'import React from "react"',
+  },
 });
