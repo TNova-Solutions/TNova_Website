@@ -1,29 +1,10 @@
-import { useEffect } from "react";
-
-import axios from "axios";
-import { Link } from "react-router-dom";
 
 
-import { API_BASE_URL } from '../../../config.js'
-import { setCapabilitiesData } from "../../../redux/slice/capabilities/CapabilitiesSlice.js";
 import Reveal from "../../animation/reveal/Reveal.jsx";
 import "./Capabilities.css";
 
-export default function Capabilities({ globalState, dispatch }) {
+export default function Capabilities({ globalState }) {
   const { tag, title, desc, services } = globalState?.capabilities || {}
-
-  useEffect(() => {
-    const fetchCapabilitiesData = async () => {
-      try {
-        // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}api/capabilities`);
-        dispatch(setCapabilitiesData(response?.data));
-      } catch (error) {
-        console.error("Error fetching capabilities data:", error);
-      }
-    };
-    fetchCapabilitiesData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <section className="section" id="capabilities">
       <div className="section-inner">
@@ -39,8 +20,10 @@ export default function Capabilities({ globalState, dispatch }) {
               <div className="cap-card">
                 <div className="cap-image">
                   <img
-                    width="100%"
-                    height="200px"
+                    width="600"
+                    height="200"
+                    loading="lazy"
+                    decoding="async"
                     src={cap?.image}
                     alt={cap?.title}
                   />
@@ -56,12 +39,9 @@ export default function Capabilities({ globalState, dispatch }) {
                     ))}
                   </div>
                   <div className="cap-actions">
-                    <Link
-                      to="/development"
-                      className="btn-ghost cap-more"
-                    >
-                      See more
-                    </Link>
+                    <a href="#contact" className="btn-ghost cap-more">
+                      Discuss this
+                    </a>
                   </div>
                 </div>
               </div>

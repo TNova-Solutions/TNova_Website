@@ -24,6 +24,8 @@ const Hero = {
         { bold: "Cloud", rest: "AWS · Render · Supabase" },
         { bold: "Web", rest: "React · Next.js" },
         { bold: "Research", rest: "academic & startup prototypes" },
+        { bold: "Training", rest: "MERN · Java · Python bootcamps" },
+        { bold: "Products", rest: "Internal Hub · Interview Platform" },
     ]
 };
 
@@ -38,7 +40,6 @@ const Capabilities = {
             desc: "Custom computer vision and classification models, trained on your data and shipped as production-ready TensorFlow Lite or cloud endpoints.",
             tags: ["TensorFlow", "PyTorch", "Computer Vision"],
             image: "/assets/capabilities/machineLearning.jpeg",
-            url: "https://en.wikipedia.org/wiki/Machine_learning"
         },
         {
             icon: "▱",
@@ -46,7 +47,6 @@ const Capabilities = {
             desc: "Cross-platform Android & iOS apps in React Native — camera, offline storage, push notifications, and polished native-feeling UI.",
             tags: ["React Native", "Expo", "iOS / Android"],
             image: "/assets/capabilities/mobileApplicationDevelopment.webp",
-            url: "https://en.wikipedia.org/wiki/Mobile_app_development"
         },
         {
             icon: "⌁",
@@ -54,7 +54,6 @@ const Capabilities = {
             desc: "Secure, documented REST APIs with authentication, database design, and cloud deployment — built to scale from prototype to production.",
             tags: ["FastAPI", "Node.js", "PostgreSQL"],
             image: "/assets/capabilities/apiDevelopment.webp",
-            url: "https://en.wikipedia.org/wiki/Application_programming_interface"
         },
         {
             icon: "◫",
@@ -62,7 +61,6 @@ const Capabilities = {
             desc: "Cost-optimised infrastructure on AWS, Render, Supabase and Firebase — we pick the stack that fits your scale, not the most expensive one.",
             tags: ["AWS", "Firebase", "Supabase"],
             image: "/assets/capabilities/cloudDatabaseArchitecture.jpg",
-            url: "https://en.wikipedia.org/wiki/Cloud_computing"
         },
         {
             icon: "◬",
@@ -70,7 +68,6 @@ const Capabilities = {
             desc: "Marketing sites, dashboards, and internal tools built in React and Next.js — fast, accessible, and easy for your team to maintain.",
             tags: ["React", "Next.js", "Design Systems"],
             image: "/assets/capabilities/webDevelopment.jpg",
-            url: "https://en.wikipedia.org/wiki/Web_development"
         },
         {
             icon: "◔",
@@ -78,7 +75,6 @@ const Capabilities = {
             desc: "Conference-ready demos and proof-of-concept builds for academic and early-stage teams who need to show working software, fast.",
             tags: ["Rapid Prototyping", "PoC", "Academic"],
             image: "/assets/capabilities/researchPrototyping.jpg",
-            url: "https://en.wikipedia.org/wiki/Prototype"
         },
     ]
 };
@@ -86,8 +82,7 @@ const Capabilities = {
 const Work = {
     tag: "Selected work",
     title: "Real builds, real constraints.",
-    desc: `A look at what we're currently building — from AI-powered field tools to
-            client product launches.`,
+    desc: `A look at what we're currently building — from AI-powered field tools to client product launches.`,
     workItems: [
         {
             title: "Fish Freshness Indicator App",
@@ -110,8 +105,7 @@ const Work = {
 const Process = {
     tag: "How we work",
     title: "A process built around milestones you can see",
-    desc: `Every engagement follows the same four stages — scoped, priced, and signed
-            off before the next one starts.`,
+    desc: `Every engagement follows the same four stages — scoped, priced, and signed off before the next one starts.`,
     processSteps: [
 
         {
@@ -142,8 +136,7 @@ const Process = {
 const Team = {
     tag: "Leadership",
     title: "Founded by two people who ship.",
-    desc: `TNova is run by its founders, end to end — from the first client call to the
-            final commit.`,
+    desc: `TNova is run by its founders, end to end — from the first client call to the final commit.`,
     founders: [
         {
             initials: "TM",
@@ -164,15 +157,21 @@ const Team = {
 }
 
 const Band = {
-    title: "Have a build in mind?",
-    desc: `Tell us what you're building — we'll send back a scoped quotation within 48
-            hours.`
+    title: "Have a build — or a team to train — in mind?",
+    desc: `Tell us what you need: a product build, a bootcamp, trainers for your campus or company, or a product demo. We reply within 48 hours.`
 }
 const Contact = {
     tag: "Contact",
     title: "Let's talk about what you're building.",
-    desc: `Send a brief or just say hello — Thepakar and Naresh personally review every
-            inquiry.`,
+    desc: `Send a brief or just say hello — Thepakar and Naresh personally review every inquiry.`,
+    interests: [
+        { value: "project", label: "Build a software project" },
+        { value: "training", label: "Bootcamp / training programme" },
+        { value: "trainer", label: "Hire trainers for my college or company" },
+        { value: "internal-hub", label: "TNova Internal Hub demo" },
+        { value: "interview-platform", label: "TNova Interview Platform demo" },
+        { value: "other", label: "Something else" },
+    ],
     contact: {
         email: "info@tnovasolutions.com",
         phone: "+91 99448 80268",
@@ -182,9 +181,71 @@ const Contact = {
     },
 }
 
+const Training = {
+    tag: "Training & trainers",
+    title: "We train developers — and we place trainers where you need them.",
+    desc: `TNova runs project-based bootcamps for learners, and supplies working-engineer trainers to colleges and companies that want industry-grade instruction on their own premises.`,
+    tracks: [
+        {
+            title: "MERN Full-Stack",
+            desc: "MongoDB, Express, React and Node.js — from first component to a deployed, tested application.",
+            tags: ["MongoDB", "Express", "React", "Node.js"],
+        },
+        {
+            title: "Java Full-Stack",
+            desc: "Core Java, Spring-based back ends and a modern front end, built around a capstone project.",
+            tags: ["Java", "Spring", "SQL", "Frontend"],
+        },
+        {
+            title: "Python Full-Stack",
+            desc: "Python, REST APIs and databases with a web front end, including an introduction to applied AI.",
+            tags: ["Python", "FastAPI", "PostgreSQL", "React"],
+        },
+    ],
+    trainerService: {
+        title: "Trainer provisioning for colleges & companies",
+        desc: "Need a trainer for a semester course, a corporate upskilling batch or a short workshop? We assign practising engineers, agree the syllabus and schedule with you up front, and report progress against it.",
+        points: [
+            "Curriculum agreed with you before the first session",
+            "Trainers who build software for a living",
+            "On-site, online or hybrid delivery",
+            "Hands-on projects and assessments, not slides alone",
+        ],
+        cta: { label: "Request a trainer", interest: "trainer" },
+    },
+    bootcampCta: { label: "Enquire about a bootcamp", interest: "training" },
+};
+
+// Set liveUrl to a product's public URL to switch its card to an "Open app" button.
+// status: "development" | "beta" | "live"
+const Products = {
+    tag: "Our products",
+    title: "Software we build for our own use — and for yours.",
+    desc: `Alongside client work, TNova builds products that solve problems we see repeatedly in teams and campuses.`,
+    items: [
+        {
+            title: "TNova Internal Hub",
+            status: "In development",
+            statusType: "progress",
+            desc: "An internal employee and HR platform: one place for people records, day-to-day HR workflows and company communication.",
+            highlights: ["Employee directory & profiles", "HR workflows", "Role-based access"],
+            interest: "internal-hub",
+            liveUrl: "",
+        },
+        {
+            title: "TNova Interview Platform",
+            status: "In development",
+            statusType: "progress",
+            desc: "A structured interview platform covering aptitude, coding, technical and HR rounds, so hiring teams and campuses can run consistent assessments.",
+            highlights: ["Aptitude & coding rounds", "Technical & HR rounds", "Consistent scoring"],
+            interest: "interview-platform",
+            liveUrl: "",
+        },
+    ],
+};
+
 const User = {
-    submitMsg: `Your message has been noted. We will get back to you within 48
-                hours at the email you provide.`,
+    submitMsg: `Your message has been noted. We will get back to you within 48 hours at the email you provide.`,
     submissions: [],
 }
 
@@ -195,20 +256,22 @@ const Footer = {
         {
             title: "Services",
             footerLink: [
-                { link: `AI & Machine Learning` },
-                { link: `Mobile Apps` },
-                { link: `Backend & APIs` },
-                { link: `Web Development` },
+                { link: `AI & Machine Learning`, href: `#capabilities` },
+                { link: `Mobile Apps`, href: `#capabilities` },
+                { link: `Backend & APIs`, href: `#capabilities` },
+                { link: `Web Development`, href: `#capabilities` },
+                { link: `Training & Trainers`, href: `#training` },
+                { link: `Products`, href: `#products` },
             ]
 
         },
         {
             title: "Company",
             footerLink: [
-                { link: `Our Work` },
-                { link: `Process` },
-                { link: `Team` },
-                { link: `Contact` },
+                { link: `Our Work`, href: `#work` },
+                { link: `Process`, href: `#process` },
+                { link: `Team`, href: `#team` },
+                { link: `Contact`, href: `#contact` },
             ]
 
         }
@@ -216,6 +279,7 @@ const Footer = {
     footerContact: {
         email: `info@tnovasolutions.com`,
         phone: `+91 99448 80268`,
+        phoneHref: `+919944880268`,
         location: 'Tamil Nadu, India'
     },
     footerBottom: {
@@ -225,4 +289,4 @@ const Footer = {
 }
 
 // Export both at once
-module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer };
+module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer, Training, Products };

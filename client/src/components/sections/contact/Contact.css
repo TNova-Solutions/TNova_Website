@@ -197,3 +197,19 @@
   color: var(--muted);
   line-height: 1.7;
 }
+.form-hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+select.form-input {
+  appearance: auto;
+}
+
+.form-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

@@ -1,6 +1,5 @@
 import "./styles/global.css";
-import { useSelector, useDispatch } from 'react-redux';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Capabilities from "./components/sections/capabilities/Capabilities";
 import Contact from "./components/sections/contact/Contact";
@@ -10,53 +9,47 @@ import Hero from "./components/sections/hero/Hero";
 import Marquee from "./components/sections/marquee/Marquee";
 import Nav from "./components/sections/nav/Nav";
 import Process from "./components/sections/process/Process";
+import Products from "./components/sections/products/Products";
 import Team from "./components/sections/team/Team";
+import Training from "./components/sections/training/Training";
 import Work from "./components/sections/work/Work";
-import DevelopmentPage from "./pages/DevelopmentPage";
+import { useSiteContent } from "./hooks/useSiteContent";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function HomePage({ globalState, dispatch }) {
   return (
     <div className="tnova-root">
       <Nav globalState={globalState} dispatch={dispatch} />
-      <Hero globalState={globalState} dispatch={dispatch} />
-      <Marquee globalState={globalState} dispatch={dispatch} />
-      <Capabilities globalState={globalState} dispatch={dispatch} />
-      <Work globalState={globalState} dispatch={dispatch} />
-      <Process globalState={globalState} dispatch={dispatch} />
-      <Team globalState={globalState} dispatch={dispatch} />
-      <CtaBand globalState={globalState} dispatch={dispatch} />
-      <Contact globalState={globalState} dispatch={dispatch} />
+      <main>
+        <Hero globalState={globalState} dispatch={dispatch} />
+        <Marquee globalState={globalState} dispatch={dispatch} />
+        <Capabilities globalState={globalState} dispatch={dispatch} />
+        <Work globalState={globalState} dispatch={dispatch} />
+        <Training globalState={globalState} dispatch={dispatch} />
+        <Products globalState={globalState} dispatch={dispatch} />
+        <Process globalState={globalState} dispatch={dispatch} />
+        <Team globalState={globalState} dispatch={dispatch} />
+        <CtaBand globalState={globalState} dispatch={dispatch} />
+        <Contact globalState={globalState} dispatch={dispatch} />
+      </main>
       <Footer globalState={globalState} dispatch={dispatch} />
     </div>
   );
 }
 
-
 /**
- * TNova Solutions — marketing site.
- *
- * Layout is a single scrolling page; each section is its own component
- * under components/sections/. Shared, reusable pieces (logo mark, reveal
- * animation, counter, terminal) live under components/ui/. Brand colours
- * and copy live under constants/ — edit those files to update content
- * without touching component logic.
+ * TNova Solutions marketing site: a single scrolling page, one section component per block under
+ * components/sections/. All copy comes from the API (/api/content) and falls back to
+ * constants/defaultContent.js, which is generated from server/src/db/data.js (`npm run sync:content`).
  */
 export default function App() {
-  /**
-   * Here we are getting data from the store and updated in globalState variable
-   * globalState - object have all the api response
-   * dispatch - function dispatch the api response to store
-   * passing to all the components directly destructure global state and dispatch function from the component
-   */
-  const dispatch = useDispatch()
-  const globalState = useSelector((state) => state);
-  console.log("globalState", globalState);
-  
+  const { globalState, dispatch } = useSiteContent();
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<HomePage globalState={globalState} dispatch={dispatch} />} />
-        <Route path="/development" element={<DevelopmentPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );

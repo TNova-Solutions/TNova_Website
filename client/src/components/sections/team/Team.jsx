@@ -1,26 +1,8 @@
-import { useEffect } from "react";
-
-import axios from "axios";
-
-import { API_BASE_URL } from "../../../config";
-import { setTeamData } from "../../../redux/slice/team/TeamSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./Team.css";
 
-export default function Team({ globalState, dispatch }) {
+export default function Team({ globalState }) {
   const { tag, title, desc, founders } = globalState?.team || {}
-
-  useEffect(() => {
-    const fetchTeamData = async () => {
-      try {
-        const response = await axios.get(`${API_BASE_URL}api/team`);
-        dispatch(setTeamData(response?.data))
-      } catch (error) {
-        console.error("Error fetching team data:", error);
-      }
-    };
-    fetchTeamData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (

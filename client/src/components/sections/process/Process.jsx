@@ -1,26 +1,8 @@
-import { useEffect } from "react";
-
-import axios from "axios";
-
-import { API_BASE_URL } from "../../../config";
-import { setProcessData } from "../../../redux/slice/process/ProcessSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./Process.css";
 
-export default function Process({ globalState, dispatch }) {
+export default function Process({ globalState }) {
   const { tag, title, desc, processSteps } = globalState?.process || {}
-  useEffect(() => {
-    const fetchProcessData = async () => {
-      try {
-        // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}api/process`);
-        dispatch(setProcessData(response?.data));
-      } catch (error) {
-        console.error("Error fetching process data:", error);
-      }
-    };
-    fetchProcessData()
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
   return (
     <section className="section" id="process">
       <div className="section-inner">

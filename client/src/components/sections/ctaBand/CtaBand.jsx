@@ -1,29 +1,10 @@
-import { useEffect } from "react";
-
-import axios from "axios";
-
-import { API_BASE_URL } from "../../../config";
-import { setCtaBandData } from "../../../redux/slice/ctaBand/CtaBandSlice";
 import Reveal from "../../animation/reveal/Reveal";
 import "./CtaBand.css";
 
 
-export default function CtaBand({ globalState, dispatch }) {
+export default function CtaBand({ globalState }) {
   const { ctaBand, contact } = globalState || {}
 
-  useEffect(() => {
-    const fetchBandData = async () => {
-      try {
-        // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}api/band`);
-        dispatch(setCtaBandData(response?.data))
-
-      } catch (error) {
-        console.error("Error fetching band data:", error);
-      }
-    };
-    fetchBandData();
-  }, [dispatch]);
 
   return (
     <div className="cta-band-wrap">

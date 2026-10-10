@@ -1,120 +1,153 @@
-// server.js
 const cors = require('cors');
 const dotenv = require('dotenv');
 const express = require('express');
+const { rateLimit } = require('express-rate-limit');
+const helmet = require('helmet');
 
 dotenv.config();
 
-// Import the simple database helpers from the database module
-const { User, initializeDatabase, saveContactSubmission, getDatabaseStatus, getSectionData } = require('./db');
+const {
+    User,
+    SECTIONS,
+    initializeDatabase,
+    saveContactSubmission,
+    getDatabaseStatus,
+    getSectionData,
+    getAllContent,
+} = require('./db');
+const { validateContact } = require('./validation');
 
+const isProduction = process.env.NODE_ENV === 'production';
 const app = express();
-app.use(cors());
-app.use(express.json());
 
-// ==========================================
-// API ENDPOINT 1: The Hero Data
-// ==========================================
-app.get('/api/hero', async (req, res) => {
-    const hero = await getSectionData('hero');
-    res.json(hero || {});
+// Behind Vercel / a reverse proxy the real client IP comes from X-Forwarded-For (needed for rate limiting).
+app.set('trust proxy', 1);
+app.disable('x-powered-by');
+app.use(helmet());
+
+// CORS: comma-separated allow-list in CORS_ORIGINS. Unset = allow all (development convenience only).
+const allowedOrigins = (process.env.CORS_ORIGINS || '')
+    .split(',')
+    .map((origin) => origin.trim().replace(/\/$/, ''))
+    .filter(Boolean);
+
+if (isProduction && allowedOrigins.length === 0) {
+    console.warn('CORS_ORIGINS is not set: any website can call this API. Set it to your site origin(s).');
+}
+
+app.use(cors({
+    origin(origin, callback) {
+        if (!origin || allowedOrigins.length === 0 || allowedOrigins.includes(origin)) {
+            return callback(null, true);
+        }
+        return callback(null, false);
+    },
+    methods: ['GET', 'POST'],
+}));
+
+app.use(express.json({ limit: '10kb' }));
+
+const contactLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    limit: Number(process.env.CONTACT_RATE_LIMIT) || 5,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+    message: { error: 'Too many submissions. Please try again in a few minutes.' },
 });
 
-// ==========================================
-// API ENDPOINT 2: The Capabilities Data
-// ==========================================
-app.get('/api/capabilities', async (req, res) => {
-    const capabilities = await getSectionData('capabilities');
-    res.json(capabilities || {});
+const readLimiter = rateLimit({
+    windowMs: 60 * 1000,
+    limit: 120,
+    standardHeaders: 'draft-7',
+    legacyHeaders: false,
+    message: { error: 'Too many requests. Please slow down.' },
 });
 
-// ==========================================
-// API ENDPOINT 3: The Work Data
-// ==========================================
-app.get('/api/work', async (req, res) => {
-    const work = await getSectionData('work');
-    res.json(work || {});
+app.get('/api/health', (req, res) => {
+    res.set('Cache-Control', 'no-store');
+    res.json({ status: 'ok', database: getDatabaseStatus() });
 });
 
-// ==========================================
-// API ENDPOINT 4: The Process Data
-// ==========================================
-app.get('/api/process', async (req, res) => {
-    const process = await getSectionData('process');
-    res.json(process || {});
-});
+// Content is public and changes rarely: let browsers and the CDN cache it briefly.
+const cacheContent = (req, res, next) => {
+    res.set('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
+    next();
+};
 
-// ==========================================
-// API ENDPOINT 5: The Team Data
-// ==========================================
-app.get('/api/team', async (req, res) => {
-    const team = await getSectionData('team');
-    res.json(team || {});
-});
-
-// ==========================================
-// API ENDPOINT 6: The Band Data
-// ==========================================
-app.get('/api/band', async (req, res) => {
-    const band = await getSectionData('band');
-    res.json(band || {});
-});
-
-// ==========================================
-// API ENDPOINT 6: The Contact Data
-// ==========================================
-app.get('/api/contact', async (req, res) => {
-    const contact = await getSectionData('contact');
-    res.json(contact || {});
-});
-
-// ==========================================
-// API ENDPOINT 6: The Footer Data
-// ==========================================
-app.get('/api/footer', async (req, res) => {
-    const footer = await getSectionData('footer');
-    res.json(footer || {});
-});
-
-//================================================================================================================
-// POST API CALL FOR CONTACT FORM   
-//================================================================================================================
-app.post('/api/user', async (req, res) => {
-    const { name, email, message } = req.body;
-
-    if (!name) {
-        return res.status(400).json({ error: 'Name is required.' });
+// All sections in one request. The client uses this on load.
+app.get('/api/content', readLimiter, cacheContent, async (req, res, next) => {
+    try {
+        res.json(await getAllContent());
+    } catch (error) {
+        next(error);
     }
-
-    if (!email) {
-        return res.status(400).json({ error: 'Email is required.' });
-    }
-
-    if (!message) {
-        return res.status(400).json({ error: 'Message is required.' });
-    }
-
-    const submission = {
-        name,
-        email,
-        message,
-        receivedAt: new Date().toISOString(),
-    };
-
-    User.submissions.push(submission);
-
-    const storedSubmission = await saveContactSubmission(submission);
-
-    res.status(200).json({
-        message: 'Thanks for your message..!!',
-        success: 'Your submission has been received successfully.',
-        submitMsg: User.submitMsg,
-        data: submission,
-        storedInDatabase: Boolean(storedSubmission),
-        database: getDatabaseStatus(),
-    });
 });
 
+// Per-section endpoints, kept for backward compatibility.
+app.get('/api/:section', readLimiter, cacheContent, async (req, res, next) => {
+    try {
+        const { section } = req.params;
+
+        if (!Object.prototype.hasOwnProperty.call(SECTIONS, section)) {
+            return next();
+        }
+
+        return res.json((await getSectionData(section)) || {});
+    } catch (error) {
+        return next(error);
+    }
+});
+
+app.post('/api/user', contactLimiter, async (req, res, next) => {
+    try {
+        const result = validateContact(req.body);
+
+        if (result.spam) {
+            // Pretend success so bots learn nothing, but store nothing.
+            return res.status(200).json({ message: 'Thanks for your message..!!', submitMsg: User.submitMsg });
+        }
+
+        if (result.error) {
+            return res.status(400).json({ error: result.error });
+        }
+
+        const stored = await saveContactSubmission({ ...result.value, receivedAt: new Date().toISOString() });
+
+        if (!stored) {
+            // Never tell a visitor "received" when the lead was not saved.
+            console.error('Contact submission could not be stored: database unavailable.');
+            return res.status(503).json({
+                error: 'We could not save your message right now. Please email info@tnovasolutions.com instead.',
+            });
+        }
+
+        return res.status(200).json({
+            message: 'Thanks for your message..!!',
+            submitMsg: User.submitMsg,
+        });
+    } catch (error) {
+        return next(error);
+    }
+});
+
+app.use('/api', (req, res) => {
+    res.status(404).json({ error: 'Not found.' });
+});
+
+// Malformed JSON, oversized bodies and unexpected failures. Never leak stack traces.
+// eslint-disable-next-line no-unused-vars
+app.use((error, req, res, next) => {
+    if (error.type === 'entity.parse.failed') {
+        return res.status(400).json({ error: 'Invalid JSON.' });
+    }
+    if (error.type === 'entity.too.large') {
+        return res.status(413).json({ error: 'Request too large.' });
+    }
+    console.error('Unhandled error:', error);
+    return res.status(500).json({ error: 'Something went wrong. Please try again.' });
+});
+
+// Warm the database connection; the site still serves bundled content if it is unavailable.
 initializeDatabase()
     .then((ready) => {
         if (!ready) {
@@ -123,11 +156,10 @@ initializeDatabase()
     })
     .catch(() => {});
 
-// Only listen locally. In production, Vercel handles this.
-if (process.env.NODE_ENV !== 'production') {
+// Listen only when run directly (`node src/server.js`). Vercel and the tests import the app instead.
+if (require.main === module) {
     const PORT = process.env.PORT || 5000;
     app.listen(PORT, () => console.log(`Server is running on http://localhost:${PORT}`));
 }
 
-// CRITICAL: Export the app
 module.exports = app;

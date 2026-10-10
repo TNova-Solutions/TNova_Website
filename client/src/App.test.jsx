@@ -35,8 +35,17 @@ vi.mock('./components/sections/team/Team', () => ({
 vi.mock('./components/sections/work/Work', () => ({
   default: () => <div>Work</div>,
 }));
-vi.mock('./pages/DevelopmentPage', () => ({
-  default: () => <div>Development page content</div>,
+vi.mock('./components/sections/training/Training', () => ({
+  default: () => <div>Training</div>,
+}));
+vi.mock('./components/sections/products/Products', () => ({
+  default: () => <div>Products</div>,
+}));
+vi.mock('./pages/NotFoundPage', () => ({
+  default: () => <div>Not found page content</div>,
+}));
+vi.mock('./hooks/useSiteContent', () => ({
+  useSiteContent: () => ({ globalState: {}, dispatch: () => {} }),
 }));
 
 function renderApp() {
@@ -59,12 +68,14 @@ describe('App', () => {
     expect(screen.getByText('Hero')).toBeInTheDocument();
     expect(screen.getByText('Capabilities')).toBeInTheDocument();
     expect(screen.getByText('Contact')).toBeInTheDocument();
+    expect(screen.getByText('Training')).toBeInTheDocument();
+    expect(screen.getByText('Products')).toBeInTheDocument();
   });
 
-  it('renders the development route when the path matches', () => {
-    window.history.pushState({}, '', '/development');
+  it('renders the 404 page for unknown routes', () => {
+    window.history.pushState({}, '', '/does-not-exist');
     renderApp();
 
-    expect(screen.getByText('Development page content')).toBeInTheDocument();
+    expect(screen.getByText('Not found page content')).toBeInTheDocument();
   });
 });

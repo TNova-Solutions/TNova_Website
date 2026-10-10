@@ -11,7 +11,7 @@ vi.mock('../../animation/reveal/Reveal.jsx', () => ({
 }));
 
 describe('Capabilities', () => {
-  it('renders services and the development link', () => {
+  it('renders services with a link to the contact form', () => {
     render(
       <MemoryRouter>
         <Capabilities
@@ -30,6 +30,6 @@ describe('Capabilities', () => {
 
     expect(screen.getByText('What we do')).toBeInTheDocument();
     expect(screen.getByText('Web apps')).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: /see more/i })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /discuss this/i })).toHaveAttribute('href', '#contact');
   });
 });

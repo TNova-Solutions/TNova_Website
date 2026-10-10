@@ -1,28 +1,8 @@
-import { useEffect } from "react";
-
-import axios from "axios";
-
-import { API_BASE_URL } from "../../../config";
-import { setFooterData } from "../../../redux/slice/footer/FooterSlice";
 import RibbonMark from "../../animation/ribbonMark/RibbonMark";
 import "./Footer.css";
 
-export default function Footer({ globalState, dispatch }) {
+export default function Footer({ globalState }) {
   const { brandName, tagLine, footerItem, footerContact, footerBottom } = globalState?.footer || {}
-
-
-  useEffect(() => {
-    const fetchFooterData = async () => {
-      try {
-        // This will automatically use the correct URL for local vs production
-        const response = await axios.get(`${API_BASE_URL}api/footer`);
-        dispatch(setFooterData(response?.data))
-      } catch (error) {
-        console.error("Error fetching footer data:", error);
-      }
-    };
-    fetchFooterData();
-  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <footer className="footer">
@@ -39,7 +19,7 @@ export default function Footer({ globalState, dispatch }) {
           <div key={index}>
             <p className="footer-col-title">{item?.title}</p>
             {item?.footerLink?.map((link) => (
-              <a key={link?.link} className="footer-link" href={link?.link}>
+              <a key={link?.link} className="footer-link" href={link?.href || "#"}>
                 {link?.link}
               </a>
             ))}
