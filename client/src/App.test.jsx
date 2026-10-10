@@ -35,6 +35,15 @@ vi.mock('./components/sections/team/Team', () => ({
 vi.mock('./components/sections/work/Work', () => ({
   default: () => <div>Work</div>,
 }));
+vi.mock('./components/sections/careers/Careers', () => ({
+  default: () => <div>Careers</div>,
+}));
+vi.mock('./components/sections/faq/Faq', () => ({
+  default: () => <div>Faq</div>,
+}));
+vi.mock('./pages/PrivacyPage', () => ({
+  default: () => <div>Privacy page content</div>,
+}));
 vi.mock('./components/sections/training/Training', () => ({
   default: () => <div>Training</div>,
 }));
@@ -70,6 +79,16 @@ describe('App', () => {
     expect(screen.getByText('Contact')).toBeInTheDocument();
     expect(screen.getByText('Training')).toBeInTheDocument();
     expect(screen.getByText('Products')).toBeInTheDocument();
+    expect(screen.getByText('Careers')).toBeInTheDocument();
+    expect(screen.getByText('Faq')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /skip to content/i })).toHaveAttribute('href', '#main');
+  });
+
+  it('renders the privacy policy route', () => {
+    window.history.pushState({}, '', '/privacy');
+    renderApp();
+
+    expect(screen.getByText('Privacy page content')).toBeInTheDocument();
   });
 
   it('renders the 404 page for unknown routes', () => {

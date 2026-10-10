@@ -2,9 +2,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
 import { capabilitiesSlice } from '../slice/capabilities/CapabilitiesSlice';
+import { careersSlice } from '../slice/careers/CareersSlice';
+// from '../slice/capabilities/CapabilitiesSlice';
 import { contactSlice } from '../slice/contact/ContactSlice';
 import { ctaBandSlice } from '../slice/ctaBand/CtaBandSlice';
 import { enquirySlice } from '../slice/enquiry/EnquirySlice';
+import { faqSlice } from '../slice/faq/FaqSlice';
 import { footerSlice } from '../slice/footer/FooterSlice';
 import { heroSlice } from '../slice/hero/HeroSlice';
 import { processSlice } from '../slice/process/ProcessSlice';
@@ -22,6 +25,8 @@ export const store = configureStore({
     contact: contactSlice.reducer,
     ctaBand: ctaBandSlice.reducer,
     enquiry: enquirySlice.reducer,
+    faq: faqSlice.reducer,
+    careers: careersSlice.reducer,
     footer: footerSlice.reducer,
     hero: heroSlice.reducer,
     process: processSlice.reducer,

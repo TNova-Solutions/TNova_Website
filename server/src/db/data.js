@@ -244,6 +244,65 @@ const Products = {
     ],
 };
 
+// NOTE: the roles below are EXAMPLES inferred from TNova's business. Edit `openings` to match your real vacancies;
+// set it to [] to show only the "general application" option.
+const Careers = {
+    tag: "Careers",
+    title: "Build real software and teach it, with a team that ships.",
+    desc: `TNova is a young company where engineers own work end to end. If you like building products and helping others learn, we'd like to hear from you.`,
+    why: [
+        { title: "Own real work", desc: "Small team, direct responsibility: you ship features and see them used." },
+        { title: "Learn in the open", desc: "Code reviews, documentation and mentoring are part of how we work." },
+        { title: "Build and teach", desc: "Engineers can also contribute to our bootcamps and trainer programmes." },
+    ],
+    openings: [
+        {
+            id: "software-developer-trainee",
+            title: "Software Developer Trainee",
+            type: "Full-time · Trainee",
+            location: "Tamil Nadu, India",
+            desc: "Learn on live projects across web, mobile and backend with a mentor reviewing your work.",
+            skills: ["JavaScript / Python / Java", "Git", "SQL basics"],
+        },
+        {
+            id: "technical-trainer",
+            title: "Technical Trainer (MERN / Java / Python)",
+            type: "Contract or full-time",
+            location: "On-site and online",
+            desc: "Deliver hands-on full-stack training for bootcamp batches and partner colleges or companies.",
+            skills: ["Full-stack development", "Teaching & mentoring", "Curriculum design"],
+        },
+        {
+            id: "ai-ml-intern",
+            title: "AI / ML Intern",
+            type: "Internship",
+            location: "Tamil Nadu, India",
+            desc: "Work on computer-vision and classification prototypes alongside our engineers.",
+            skills: ["Python", "TensorFlow or PyTorch", "Data handling"],
+        },
+    ],
+    general: {
+        id: "general",
+        title: "Don't see your role?",
+        desc: "Send a general application and tell us how you'd like to contribute.",
+    },
+};
+
+const Faq = {
+    tag: "FAQ",
+    title: "Common questions",
+    desc: `Straight answers about how we work, price and support projects.`,
+    items: [
+        { q: "How quickly will you reply to an enquiry?", a: "We reply within 48 hours with a scoped quotation or next steps." },
+        { q: "How does pricing work?", a: "Every engagement starts with a fixed-scope quotation with module-by-module pricing, agreed before work begins." },
+        { q: "Do we own the source code?", a: "Yes. You receive full source code and documentation at hand-off, with no vendor lock-in." },
+        { q: "What happens after launch?", a: "Every project includes 30 days of post-launch support." },
+        { q: "How is work delivered?", a: "In 3-4 milestones, each tied to a working deliverable such as a trained model, a live API or a testable app build." },
+        { q: "Can you train our college or company team?", a: "Yes. We supply practising engineers as trainers for MERN, Java and Python full-stack programmes, on-site or online. Use the contact form and choose the trainer option." },
+        { q: "How do I apply for a job?", a: "Use the application form in the Careers section. General applications are welcome even when no matching role is listed." },
+    ],
+};
+
 const User = {
     submitMsg: `Your message has been noted. We will get back to you within 48 hours at the email you provide.`,
     submissions: [],
@@ -272,6 +331,9 @@ const Footer = {
                 { link: `Process`, href: `#process` },
                 { link: `Team`, href: `#team` },
                 { link: `Contact`, href: `#contact` },
+                { link: `Careers`, href: `#careers` },
+                { link: `FAQ`, href: `#faq` },
+                { link: `Privacy Policy`, href: `/privacy` },
             ]
 
         }
@@ -289,4 +351,4 @@ const Footer = {
 }
 
 // Export both at once
-module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer, Training, Products };
+module.exports = { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer, Training, Products, Careers, Faq };

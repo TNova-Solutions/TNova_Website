@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 
 const data = require('./data');
 
-const { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer, Training, Products } = data;
+const { Hero, Capabilities, Work, Process, Team, Band, Contact, User, Footer, Training, Products, Careers, Faq } = data;
 
 // API section name -> default content (also the offline fallback when no database is configured).
 const SECTIONS = {
@@ -13,6 +13,8 @@ const SECTIONS = {
     team: Team,
     training: Training,
     products: Products,
+    careers: Careers,
+    faq: Faq,
     band: Band,
     contact: Contact,
     footer: Footer,
@@ -93,6 +95,18 @@ async function runInitialization(dbPool) {
             email TEXT NOT NULL,
             message TEXT NOT NULL,
             interest TEXT,
+            received_at TIMESTAMPTZ DEFAULT NOW()
+        )
+    `);
+    await dbPool.query(`
+        CREATE TABLE IF NOT EXISTS job_applications (
+            id SERIAL PRIMARY KEY,
+            role TEXT NOT NULL,
+            name TEXT NOT NULL,
+            email TEXT NOT NULL,
+            phone TEXT,
+            profile_url TEXT,
+            message TEXT NOT NULL,
             received_at TIMESTAMPTZ DEFAULT NOW()
         )
     `);
@@ -222,6 +236,43 @@ async function saveContactSubmission(submission) {
     return result.rows[0];
 }
 
+async function saveJobApplication(application) {
+    const dbPool = getPool();
+
+    if (!dbPool || !(await initializeDatabase())) {
+        return null;
+    }
+
+    const result = await dbPool.query(
+        `
+            INSERT INTO job_applications (role, name, email, phone, profile_url, message, received_at)
+            VALUES ($1, $2, $3, $4, $5, $6, $7)
+            RETURNING id, received_at AS "receivedAt"
+        `,
+        [
+            application.role, application.name, application.email,
+            application.phone || null, application.profileUrl || null, application.message, application.receivedAt,
+        ]
+    );
+
+    return result.rows[0];
+}
+
+// Latest rows for the protected admin endpoint. Returns null when the database is unavailable.
+async function listSubmissions(kind, limit = 200) {
+    const dbPool = getPool();
+
+    if (!dbPool || !(await initializeDatabase())) {
+        return null;
+    }
+
+    const query = kind === 'applications'
+        ? 'SELECT id, role, name, email, phone, profile_url AS "profileUrl", message, received_at AS "receivedAt" FROM job_applications ORDER BY id DESC LIMIT $1'
+        : 'SELECT id, name, email, interest, message, received_at AS "receivedAt" FROM contact_submissions ORDER BY id DESC LIMIT $1';
+
+    return (await dbPool.query(query, [limit])).rows;
+}
+
 module.exports = {
     ...data,
     SECTIONS,
@@ -233,4 +284,6 @@ module.exports = {
     getSectionData,
     getAllContent,
     saveContactSubmission,
+    saveJobApplication,
+    listSubmissions,
 };

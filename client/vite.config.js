@@ -18,4 +18,7 @@ export default defineConfig({
       reportsDirectory: './coverage',
     },
   },
+  esbuild: {
+    jsxInject: 'import React from "react"',
+  },
 });

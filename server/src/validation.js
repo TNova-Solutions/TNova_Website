@@ -48,4 +48,47 @@ function validateContact(body) {
     return { value: { name, email, message, interest } };
 }
 
-module.exports = { validateContact, INTERESTS, LIMITS };
+function validateApplication(body, roleIds = []) {
+    if (!body || typeof body !== 'object') {
+        return { error: 'Invalid request.' };
+    }
+
+    if (body.website) {
+        return { spam: true };
+    }
+
+    const role = clean(body.role);
+    const name = clean(body.name);
+    const email = clean(body.email).toLowerCase();
+    const phone = clean(body.phone);
+    const profileUrl = clean(body.profileUrl);
+    const message = clean(body.message);
+
+    if (!role || (role !== 'general' && !roleIds.includes(role))) {
+        return { error: 'Please choose a valid role.' };
+    }
+    if (!name) return { error: 'Name is required.' };
+    if (name.length > LIMITS.name) return { error: `Name must be ${LIMITS.name} characters or fewer.` };
+    if (!email) return { error: 'Email is required.' };
+    if (email.length > LIMITS.email || !EMAIL_PATTERN.test(email)) return { error: 'Please enter a valid email address.' };
+    if (phone && (!/^[+\d()\s.-]+$/.test(phone) || phone.replace(/\D/g, '').length < 7 || phone.length > 20)) {
+        return { error: 'Please enter a valid phone number.' };
+    }
+    if (profileUrl) {
+        let parsedUrl;
+        try {
+            parsedUrl = new URL(profileUrl);
+        } catch {
+            return { error: 'Profile link must be a full URL such as https://github.com/you.' };
+        }
+        if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
+            return { error: 'Profile link must be a valid http(s) URL.' };
+        }
+    }
+    if (!message) return { error: 'Please tell us a little about yourself.' };
+    if (message.length > 3000) return { error: 'Message must be 3000 characters or fewer.' };
+
+    return { value: { role, name, email, phone, profileUrl, message } };
+}
+
+module.exports = { validateContact, validateApplication, INTERESTS, LIMITS };

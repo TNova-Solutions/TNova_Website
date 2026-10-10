@@ -6,8 +6,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { API_BASE_URL } from "../config";
 import defaultContent from "../constants/defaultContent";
 import { setCapabilitiesData } from "../redux/slice/capabilities/CapabilitiesSlice";
+import { setCareersData } from "../redux/slice/careers/CareersSlice";
 import { setContactData } from "../redux/slice/contact/ContactSlice";
 import { setCtaBandData } from "../redux/slice/ctaBand/CtaBandSlice";
+import { setFaqData } from "../redux/slice/faq/FaqSlice";
 import { setFooterData } from "../redux/slice/footer/FooterSlice";
 import { setHeroData } from "../redux/slice/hero/HeroSlice";
 import { setProcessData } from "../redux/slice/process/ProcessSlice";
@@ -25,6 +27,8 @@ const SECTION_ACTIONS = {
   team: ["team", setTeamData],
   training: ["training", setTrainingData],
   products: ["products", setProductsData],
+  careers: ["careers", setCareersData],
+  faq: ["faq", setFaqData],
   band: ["ctaBand", setCtaBandData],
   contact: ["contact", setContactData],
   footer: ["footer", setFooterData],

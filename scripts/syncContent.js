@@ -6,7 +6,8 @@ const path = require('path');
 const d = require('../server/src/db/data');
 const content = {
   hero: d.Hero, capabilities: d.Capabilities, work: d.Work, process: d.Process, team: d.Team,
-  training: d.Training, products: d.Products, ctaBand: d.Band, contact: d.Contact, footer: d.Footer,
+  training: d.Training, products: d.Products, careers: d.Careers, faq: d.Faq,
+  ctaBand: d.Band, contact: d.Contact, footer: d.Footer,
 };
 
 const out = path.join(__dirname, '../client/src/constants/defaultContent.js');
